@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="D:/Antonin/Dev/Java/_Minecraft/,Spigot/Plugins/Plugin obligatoire pour faction 1.8.8/FactionsUUID.jar"/>
+	<classpathentry kind="lib" path="D:/Antonin/Dev/Java/_Minecraft/,Spigot/Plugins/Plugin obligatoire pour faction 1.8.8/GroupManager.jar"/>
+	<classpathentry kind="lib" path="D:/Antonin/Dev/Java/_Minecraft/,Spigot/Plugins/Plugin obligatoire pour faction 1.8.8/ProtocolLib.jar"/>
+	<classpathentry kind="lib" path="D:/Antonin/Dev/Java/_Minecraft/,Spigot/Plugins/Plugin obligatoire pour faction 1.8.8/RandomTP.jar"/>
+	<classpathentry kind="lib" path="D:/Antonin/Dev/Java/_Minecraft/,Spigot/Plugins/Plugin obligatoire pour faction 1.8.8/Vault-1.7.2.jar"/>
+	<classpathentry kind="lib" path="D:/Antonin/Dev/Java/_Minecraft/,Spigot/Plugins/Plugin obligatoire pour faction 1.8.8/worldedit-bukkit-6.1.9.jar"/>
+	<classpathentry kind="lib" path="D:/Antonin/Dev/Java/_Minecraft/,Spigot/Plugins/Plugin obligatoire pour faction 1.8.8/worldguard-6.2.jar"/>
+	<classpathentry kind="lib" path="D:/Antonin/Dev/Java/_Minecraft/,Spigot/Plugins/Plugin obligatoire pour faction 1.8.8/EssentialsX-2.17.2/EssentialsX-2.17.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/Antonin/Dev/Java/_Minecraft/,Spigot/MyServeur/ACoreBeta3/Spigot-1.8.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/anton/Desktop/Factions.jar"/>
+	<classpathentry kind="lib" path="C:/Users/anton/Desktop/MassiveCore.jar"/>
+	<classpathentry kind="lib" path="D:/Antonin/Dev/Java/_Minecraft/,Spigot/MyServeur/Wyraah Remastorisation/plugins/LuckPerms.jar"/>
+	<classpathentry kind="lib" path="C:/Users/anton/Desktop/SaberFactions.jar"/>
+	<classpathentry kind="lib" path="D:/Antonin/Dev/Java/_Minecraft/,Spigot/Libs/jedis/commons-pool2-2.6.2.jar"/>
+	<classpathentry kind="lib" path="D:/Antonin/Dev/Java/_Minecraft/,Spigot/Libs/jedis/jedis-3.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/Antonin/Dev/Java/_Minecraft/,Spigot/Libs/jedis/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
