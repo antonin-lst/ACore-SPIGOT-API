@@ -1,0 +1,60 @@
+            ##################
+            #     ACore      #
+            ##################
+#Configuration du ACore Beta 3
+#Version preBeta
+#
+#
+
+            ##################
+            #    ALogger     #
+            ##################
+logger:
+  prefix: "&5[&dWyraah&5] " # le prefix est utilisé dans les messages envoyés aux joueurs comme pour les commands
+  consolPrefix: "&eA&6Core &a"
+  verbose: true
+
+            ##################
+            #    Storage     #
+            ##################
+storage:
+  enable: true
+  type: "SQL" # SQL ou JSON
+
+  sql:
+    urlbase: "jdbc:mysql://"
+    host: "localhost"
+    database: ""
+    user: ""
+    pass: ""
+    
+            ##################
+            #     Redis      #
+            ##################
+    
+jedis:
+  host: "localhost"
+  port: 6379
+  password: ""
+    
+            ##################
+            #     Bungee     #
+            ##################
+bungee: false
+
+            ##################
+            #       MCP      #
+            ##################
+mcp: false
+  
+            ##################
+            #    Commands    #
+            ##################
+#{PREFIX} / {SYNTAXE} / {DELAY}
+
+commands:
+  syntaxErrorMessage: "{PREFIX} &cVous devez utilisez la commande comme ceci&8: &a{SYNTAXE}."
+  permissionDeniedMessage: "{PREFIX} &cVous n'avez pas la permission de faire ceci !"
+  playerOnlyMessage: "{PREFIX} &cVous devez être un joueur pour executer cette commande."
+  consolOnlyMessage: "{PREFIX} &cVous devez être la consol pour executer cette commande."
+  delayCancelMessage: "{PREFIX} &6Vous avez encore &e{DELAY} &6a attendre !"
