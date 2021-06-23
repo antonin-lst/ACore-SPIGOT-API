@@ -1,0 +1,7 @@
+name: ACoreSpigotAPI
+version: @version@
+main: fr.acore.spigot.ACoreSpigotAPI
+api-version: 1.8.8
+authors: [ azefgh456 ]
+description: A test Plugin
+softdepend: [Vault, Essentials, Factions, RandomTP, WorldGuard]
