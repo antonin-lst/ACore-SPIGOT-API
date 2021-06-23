@@ -1,8 +1,0 @@
-name: ACoreSpigotAPI
-author: azefgh456
-version: 0.3.9
-main: fr.azefgh456.acore.ACore
-softdepend: [ProtocolLib, Vault, Essentials, Factions, RandomTP, WorldGuard]
-commands:
- reload:
-  aliases: [rl]
