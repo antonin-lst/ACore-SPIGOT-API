@@ -2,7 +2,7 @@ package fr.acore.spigot.nms.version;
 
 import java.lang.reflect.Field;
 
-//import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.event.Event;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
@@ -14,7 +14,7 @@ import fr.acore.spigot.nms.utils.ObjectiveMode;
 import fr.acore.spigot.utils.ReflexionUtils;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
-/*import net.minecraft.server.v1_8_R3.EntityPlayer;
+import net.minecraft.server.v1_8_R3.EntityPlayer;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
 import net.minecraft.server.v1_8_R3.Packet;
@@ -27,10 +27,10 @@ import net.minecraft.server.v1_8_R3.PacketPlayOutScoreboardObjective;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle.EnumTitleAction;
 import net.minecraft.server.v1_8_R3.ScoreboardObjective;
-*/
-public class NMSMappingV1_8_R3{
+
+public class NMSMappingV1_8_R3 implements INetMinecraftServer{
 	
-	/*
+
 	@Override
 	public int getPing(CorePlayer<?> player) {
 		return getEntityPlayer(player).ping;
@@ -153,5 +153,5 @@ public class NMSMappingV1_8_R3{
 		}
 		
 		
-	}*/
+	}
 }

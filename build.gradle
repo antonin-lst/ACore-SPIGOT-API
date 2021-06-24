@@ -33,6 +33,7 @@ dependencies {
     implementation files('libs/LuckPerms.jar')
     implementation files('libs/WorldEdit.jar')
     implementation files('libs/WorldGuard.jar')
+    implementation files('libs/AllNms.jar')
 }
 
 processResources {
