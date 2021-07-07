@@ -2,12 +2,12 @@ package fr.acore.spigot.nms.version;
 
 import java.lang.reflect.Field;
 
+import fr.acore.spigot.api.nms.INMSPacket;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.event.Event;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 
-import fr.acore.spigot.api.packet.IPacket;
 import fr.acore.spigot.api.player.impl.CorePlayer;
 import fr.acore.spigot.nms.INetMinecraftServer;
 import fr.acore.spigot.nms.utils.ObjectiveMode;
@@ -88,7 +88,7 @@ public class NMSMappingV1_8_R3 implements INetMinecraftServer{
 	public void sendPacketPlayOutScoreboardDisplayObjective(CorePlayer<?> player, Objective obj) throws Exception{
 		ScoreboardObjective sbOjective = (ScoreboardObjective) ReflexionUtils.getMethod(obj, "getHandle").invoke(obj);
 		V1_8_R3Packet<PacketPlayOutScoreboardDisplayObjective> packetPlayOutScoreboardDisplayObjective = new V1_8_R3Packet<>(new PacketPlayOutScoreboardDisplayObjective(1, sbOjective));
-		sendPacket(player, (IPacket<?>) packetPlayOutScoreboardDisplayObjective);
+		sendPacket(player, (INMSPacket<?>) packetPlayOutScoreboardDisplayObjective);
 	}
 
 	@Override
@@ -125,7 +125,7 @@ public class NMSMappingV1_8_R3 implements INetMinecraftServer{
 		return null;
 	}
 	
-	public static class V1_8_R3Packet<T extends Packet<?>> implements IPacket<T>{
+	public static class V1_8_R3Packet<T extends Packet<?>> implements INMSPacket<T> {
 
 		private T packet;
 		
@@ -135,14 +135,18 @@ public class NMSMappingV1_8_R3 implements INetMinecraftServer{
 
 		@Override
 		public void sendPacket(CorePlayer<?> player) {
-			((CraftPlayer) player).getHandle().playerConnection.sendPacket(getPacket());
+			((CraftPlayer) player).getHandle().playerConnection.sendPacket(getEncapsuledPacket());
 		}
 
 		@Override
-		public T getPacket() {
+		public T getEncapsuledPacket() {
 			return this.packet;
 		}
-		
+
+		@Override
+		public int getId() {
+			return -1;
+		}
 	}
 	
 	public class APacketPlayInTabComplete extends V1_8_R3Packet<PacketPlayInTabComplete>{

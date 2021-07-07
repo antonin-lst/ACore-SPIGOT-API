@@ -2,6 +2,7 @@ package fr.acore.spigot.api.player.impl;
 
 import java.util.List;
 
+import fr.acore.spigot.api.nms.INMSPacket;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
 import org.bukkit.entity.Player;
@@ -55,7 +56,7 @@ public interface CorePlayer<T extends ICommandCooldown<?>> extends OfflineCorePl
 	
 	public int getPing();
 	
-	public void sendPacket(IPacket<?> packet);
+	public void sendPacket(INMSPacket<?> packet);
 	
 	public void sendTitle(String message);
 	public void sendTitle(String message, int fadin, int delay, int fadout);

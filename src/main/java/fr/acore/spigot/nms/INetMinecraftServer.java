@@ -1,5 +1,6 @@
 package fr.acore.spigot.nms;
 
+import fr.acore.spigot.api.nms.INMSPacket;
 import org.bukkit.event.Event;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
@@ -12,7 +13,7 @@ import io.netty.channel.ChannelPipeline;
 
 public interface INetMinecraftServer {
 
-	default public void sendPacket(CorePlayer<?> player, IPacket<?> packet) {
+	default public void sendPacket(CorePlayer<?> player, INMSPacket<?> packet) {
 		packet.sendPacket(player);
 	}
 	

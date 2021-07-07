@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import fr.acore.spigot.api.nms.INMSPacket;
 import org.bukkit.entity.Player;
 
 import fr.acore.spigot.api.faction.IFaction;
@@ -178,7 +179,7 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 	}
 	
 	@Override
-	public void sendPacket(IPacket<?> packet) {
+	public void sendPacket(INMSPacket<?> packet) {
 		packet.sendPacket(this);
 	}
 

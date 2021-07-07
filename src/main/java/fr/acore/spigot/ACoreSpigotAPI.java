@@ -6,6 +6,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.acore.spigot.jedis.manager.RedisManager;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -127,7 +128,7 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 		getInternalManager(LoggerManager.class).enableAsyncPrintter();
 
 		try {
-			//cr�ation du storage en fonction de la configuration (config.yml) !! support actuelle MYSQL !! 
+			//création du storage en fonction de la configuration (config.yml) !! support actuelle MYSQL !!
 			IDatabase<?> database = Conf.getStorageType().equals(DatabaseDriver.MYSQL) ? new MySqlDatabase("maindb", new DBUser(Conf.getUser(), Conf.getPass()), Conf.getHost()) : null;
 			StorageManager storageM = new StorageManager(this, database);
 			storageM.load();
@@ -155,6 +156,8 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 		registerManager(new PacketsManager(this));
 		//registration du systeme de gestion des modules
 		registerManager(new AModuleManager(this));
+		//registration du systeme de packet Redis
+		registerManager(new RedisManager(this));
 		
 	}
 	
