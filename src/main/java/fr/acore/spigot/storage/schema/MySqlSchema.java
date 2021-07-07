@@ -37,6 +37,7 @@ public class MySqlSchema implements ISchema<MySqlTable>{
 	
 	@Override
 	public void load() {
+		if(!database.isConnected()) return;
 		try {
 			PreparedStatement statement = getConnection().prepareStatement("CREATE SCHEMA " + name + ";");
 			statement.execute();

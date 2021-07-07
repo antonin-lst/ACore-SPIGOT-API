@@ -9,14 +9,17 @@ import fr.acore.spigot.hook.AHook;
 
 public class ServiceProviderHook<T> extends AHook<ServicesManager, T> {
 
-	public ServiceProviderHook(ServicesManager hooker, String hookName) {
+	private Class<T> hookClazz;
+
+	public ServiceProviderHook(ServicesManager hooker, String hookName, Class<T> hookClazz) {
 		super(hooker, hookName);
+		this.hookClazz = hookClazz;
 	}
 
 	@Override
 	public IHook<ServicesManager> hook() throws HookFailException {
 		
-		RegisteredServiceProvider<T> provider = (RegisteredServiceProvider<T>) hooker.getRegistration(getHook().getClass());
+		RegisteredServiceProvider<T> provider = hooker.getRegistration(hookClazz);
 		
 		if(provider == null) throw new HookFailException(this);
 		

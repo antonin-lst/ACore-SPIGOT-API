@@ -46,7 +46,7 @@ public class MySqlDatabase implements IDatabase<MySqlSchema>{
 	
 	@Override
 	public void load() {
-		System.out.println("Nothing to do in mysqlLoad");
+
 	}
 
 	@Override

@@ -100,7 +100,7 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 	
 	/*
 	 * 
-	 * Methods appelée quand le plugin change d'etat heritée de JavaPlugin
+	 * Methods appelï¿½e quand le plugin change d'etat heritï¿½e de JavaPlugin
 	 * 
 	 * 
 	 */
@@ -127,7 +127,7 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 		getInternalManager(LoggerManager.class).enableAsyncPrintter();
 
 		try {
-			//création du storage en fonction de la configuration (config.yml) !! support actuelle MYSQL !! 
+			//crï¿½ation du storage en fonction de la configuration (config.yml) !! support actuelle MYSQL !! 
 			IDatabase<?> database = Conf.getStorageType().equals(DatabaseDriver.MYSQL) ? new MySqlDatabase("maindb", new DBUser(Conf.getUser(), Conf.getPass()), Conf.getHost()) : null;
 			StorageManager storageM = new StorageManager(this, database);
 			storageM.load();
@@ -135,7 +135,7 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 			//registration du storage
 			registerManager(storageM);
 			
-			//registration de la base de donnée par default
+			//registration de la base de donnÃ©e par default
 			storageM.setDefaultDatabase("maindb");
 			
 			//registration du schema en configuration
@@ -185,7 +185,7 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 	    config = new YamlConfiguration();
 	    try {
 	        config.loadFromString(Files.toString (configFile, Charset.forName("UTF-8")));
-	        log(ChatColor.YELLOW + getName() + ChatColor.GRAY + " config.yml chargée avec succes");
+	        log(ChatColor.YELLOW + getName() + ChatColor.GRAY + " config.yml chargÃ©e avec succes");
 	    } catch (IOException | InvalidConfigurationException e) {
 	       log(ChatColor.YELLOW + getName() + ChatColor.RED + " Une erreur est survenue pendant le chargement du fichier config.yml");
 	    }

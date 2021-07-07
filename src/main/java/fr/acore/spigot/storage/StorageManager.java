@@ -23,7 +23,7 @@ public class StorageManager implements IStorageManager, IManager{
 	
 	/*
 	 * 
-	 * gestion des bases de données
+	 * gestion des bases de donnï¿½es
 	 * 
 	 */
 	
@@ -44,7 +44,7 @@ public class StorageManager implements IStorageManager, IManager{
 	
 	/*
 	 * 
-	 * loading des bases de données
+	 * loading des bases de donnï¿½es
 	 * 
 	 */
 	
@@ -54,16 +54,16 @@ public class StorageManager implements IStorageManager, IManager{
 			try {
 				plugin.log("Loading " + db.getName());
 				db.connect();
-				db.load();
+				if(db.isConnected()) db.load();
 			} catch (ConnectionException e) {
-				System.out.println(e.getMessage());
+				logErr(e.getMessage());
 			}
 		}
 	}
 
 	/*
 	 * 
-	 * Sauvgarde de la population des bases de données et la base de données
+	 * Sauvgarde de la population des bases de donnÃ©es et la base de donnÃ©es
 	 * 
 	 */
 	
@@ -86,7 +86,7 @@ public class StorageManager implements IStorageManager, IManager{
 	
 	/*
 	 * 
-	 * gestion des bases de données
+	 * gestion des bases de donnÃ©es
 	 * 
 	 */
 	
@@ -115,7 +115,7 @@ public class StorageManager implements IStorageManager, IManager{
 	
 	/*
 	 * 
-	 * Gestion de la base de données par default (utilisée par les population si pas passez en arguments)
+	 * Gestion de la base de donnï¿½es par default (utilisï¿½e par les population si pas passez en arguments)
 	 * 
 	 */
 

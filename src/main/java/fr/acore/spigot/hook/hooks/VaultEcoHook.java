@@ -8,7 +8,7 @@ import net.milkbowl.vault.economy.Economy;
 public class VaultEcoHook extends ServiceProviderHook<Economy> {
 
 	public VaultEcoHook(ServicesManager hooker) {
-		super(hooker, "Vault");
+		super(hooker, "Vault", Economy.class);
 		// TODO Auto-generated constructor stub
 	}
 
