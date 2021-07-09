@@ -21,7 +21,7 @@ public abstract class RedisPacket implements IRedisPacket {
         JsonObject serializedPacket = new JsonObject();
 
         String serializedClazz = gson.toJson(this);
-        JsonObject jsonPacketData = JsonParser.parseString(serializedClazz).getAsJsonObject();
+        JsonObject jsonPacketData = new JsonParser().parse(serializedClazz).getAsJsonObject();
 
         serializedPacket.addProperty("id", getId());
 
