@@ -31,7 +31,7 @@ public interface IColumn {
 	public default String toSql() {
 		StringBuilder tableToSql = new StringBuilder(getName());
 		tableToSql.append(" ").append(getType().getSqlType()).append("(").append(getSize().toSql() + ")");
-		System.out.println("Column : " + getName() + " IsNullable : " + isNullable() + " isPrimary : " + isPrimary() + " type : " + getType().name());
+
 		if(!isNullable()) tableToSql.append(" NOT NULL");
 		if(isAutoIncrement() && getType().equals(ColumnType.INTEGER) && isPrimary()) tableToSql.append(" AUTO_INCREMENT");
 		return tableToSql.toString();

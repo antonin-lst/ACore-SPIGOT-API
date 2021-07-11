@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.acore.spigot.jedis.manager.RedisManager;
+import fr.acore.spigot.jedis.packet.impl.InitServerPacket;
+import fr.acore.spigot.jedis.packet.impl.TestPacket;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -88,7 +90,18 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 	 */
 	private List<IManager> managers;
 	
-	
+
+	/*
+
+	Gestion de la précence du ACoreMain
+
+	 */
+
+	private static boolean acoreMainPresence;
+	public static boolean getAcoreMainPresence(){ return acoreMainPresence;}
+	public void setAcoreMainPresence(){ acoreMainPresence = true;}
+
+
 	/*
 	 * gestion du temps de lancement du ACore
 	 * 
@@ -120,6 +133,14 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 		reloadConfig();
 		//registration de la configuration
 		registerManager(new ConfigManager(this));
+		//registration du systeme de packet Redis
+		RedisManager redisManager;
+		registerManager(redisManager = new RedisManager(this));
+		//registration des packets //id 1 est pour le packet de test
+		//packets serveurs
+		redisManager.getPacketFactory().addPacket(2, InitServerPacket.class);
+		redisManager.syncCheckACoreMainPresence();
+
 		//registration du syteme de Task
 		registerManager(new RunnableManager(this));
 		//registration wrapper des nouveaux event
@@ -156,9 +177,7 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 		registerManager(new PacketsManager(this));
 		//registration du systeme de gestion des modules
 		registerManager(new AModuleManager(this));
-		//registration du systeme de packet Redis
-		registerManager(new RedisManager(this));
-		
+
 	}
 	
 	@Override

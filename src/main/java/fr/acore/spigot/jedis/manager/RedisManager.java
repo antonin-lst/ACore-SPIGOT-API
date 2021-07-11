@@ -9,14 +9,19 @@ import fr.acore.spigot.api.jedis.IRedisPacket;
 import fr.acore.spigot.api.jedis.IRedisPacketManager;
 import fr.acore.spigot.api.packet.IPacketFactory;
 import fr.acore.spigot.api.plugin.IPlugin;
+import fr.acore.spigot.api.timer.ITimer;
 import fr.acore.spigot.config.utils.Conf;
 import fr.acore.spigot.jedis.channel.JedisChannelHandling;
 import fr.acore.spigot.jedis.packet.RedisPacket;
 import fr.acore.spigot.jedis.packet.factory.RedisPacketFactory;
+import fr.acore.spigot.jedis.packet.impl.InitServerPacket;
 import fr.acore.spigot.jedis.packet.impl.TestPacket;
 import fr.acore.spigot.jedis.publisher.JedisPublisher;
+import fr.acore.spigot.utils.time.TimerBuilder;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPubSub;
+
+import java.util.Timer;
 
 public class RedisManager extends JedisPubSub implements IRedisPacketManager {
 
@@ -44,7 +49,7 @@ public class RedisManager extends JedisPubSub implements IRedisPacketManager {
         }}).start();
 
         new Thread(jedisPublisher).start();
-        jedisPublisher.write(new TestPacket(JedisChannelHandling.ACORE_MAIN.getChannel()));
+        //jedisPublisher.write(new TestPacket(JedisChannelHandling.ACORE_MAIN.getChannel()));
     }
 
 
@@ -57,7 +62,7 @@ public class RedisManager extends JedisPubSub implements IRedisPacketManager {
     @Override
     public void onMessage(String channel, String message) {
         System.out.println(message);
-        handlePacket(JsonParser.parseString(message).getAsJsonObject());
+        handlePacket(new JsonParser().parse(message).getAsJsonObject());
         //super.onMessage(channel, message);
     }
 
@@ -82,6 +87,22 @@ public class RedisManager extends JedisPubSub implements IRedisPacketManager {
         }
     }
 
+    public void syncCheckACoreMainPresence() {
+        log("start check ACoreMain Presence");
+        sendPacket(new InitServerPacket(instance.getServerName()));
+        ITimer timer = new TimerBuilder(500);
+
+        while(!timer.isFinish() && !ACoreSpigotAPI.getAcoreMainPresence()){
+            //System.out.println("waiting");
+        }
+
+        if(timer.isFinish() && !ACoreSpigotAPI.getAcoreMainPresence()){
+            log("Disable ACoreMain indisponible");
+        }else {
+            log("Connection au ACoreMain réussit");
+        }
+    }
+
     @Override
     public IPacketFactory<IRedisPacket> getPacketFactory() {
         return packetFactory;
@@ -93,38 +114,46 @@ public class RedisManager extends JedisPubSub implements IRedisPacketManager {
     }
 
 
+    /*
+     *
+     * Gestion des logs
+     *
+     */
+
     @Override
     public void log(String... args) {
-
-    }
-
-    @Override
-    public void logWarn(String... args) {
-
-    }
-
-    @Override
-    public void logErr(String... args) {
-
+        instance.log(args);
     }
 
     @Override
     public void log(Object... args) {
+        instance.log(args);
+    }
 
+    @Override
+    public void logWarn(String... args) {
+        instance.logWarn(args);
     }
 
     @Override
     public void logWarn(Object... args) {
+        instance.logWarn(args);
+    }
 
+    @Override
+    public void logErr(String... args) {
+        instance.logErr(args);
     }
 
     @Override
     public void logErr(Object... args) {
-
+        instance.logErr(args);
     }
 
     @Override
     public IPlugin<?> getPlugin() {
         return instance;
     }
+
+
 }

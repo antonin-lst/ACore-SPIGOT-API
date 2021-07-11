@@ -74,12 +74,12 @@ public class MySqlTable implements ITable {
 
 	@Override
 	public void inject(Class<?> ressourceClazz) {
-		System.out.println("Injection de la class : " + ressourceClazz.getSimpleName());
+		//System.out.println("Injection de la class : " + ressourceClazz.getSimpleName());
 		this.ressourceClass = ressourceClazz;
 		for(IColumn c : columns) {
 			for(Field f : ressourceClass.getDeclaredFields()) {
 				if(DBHelper.getRealColumnName(f).equals(c.getName())) {
-					System.out.println("InjectionDebug " + f.getName() + " " + DBHelper.getRealColumnName(f) + " " + c.getName());
+					//System.out.println("InjectionDebug " + f.getName() + " " + DBHelper.getRealColumnName(f) + " " + c.getName());
 					c.injectField(f);
 				}else if(f.getDeclaredAnnotation(ManyToOne.class) != null && (f.getDeclaredAnnotation(ManyToOne.class).columnName().equals(c.getName())) || f.getName().equals(c.getName())) {
 					c.injectField(f);

@@ -4,12 +4,15 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import fr.acore.spigot.api.jedis.IRedisPacket;
+import fr.acore.spigot.jedis.channel.JedisChannelHandling;
 
 import java.lang.reflect.Field;
 
 public abstract class RedisPacket implements IRedisPacket {
 
-    private String channel;
+    private String channel = JedisChannelHandling.ACORE_MAIN.getChannel();
+
+    public RedisPacket(){}
 
     public RedisPacket(String channel){
         this.channel = channel;
@@ -34,7 +37,7 @@ public abstract class RedisPacket implements IRedisPacket {
     public void fromJson(JsonObject datas) {
         for(Field f : getClass().getDeclaredFields()){
             JsonElement currentElement = datas.get(f.getName());
-            if(!currentElement.isJsonNull()){
+            if(currentElement != null){
                 try {
                     Object value = null;
                     if(currentElement.getAsJsonPrimitive().isString()){

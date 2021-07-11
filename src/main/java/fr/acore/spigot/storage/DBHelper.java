@@ -56,7 +56,6 @@ public class DBHelper {
 			@Override
 			public void injectField(Field columnField) {
 				this.field = columnField;
-				System.out.println("Injection column " + getName());
 				if(field.getDeclaredAnnotation(Column.class) != null) {
 					this.column = field.getDeclaredAnnotation(Column.class);
 				}else if(field.getDeclaredAnnotation(ManyToOne.class) != null){

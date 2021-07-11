@@ -12,7 +12,7 @@ public class TestPacket extends RedisPacket {
 
     public TestPacket(String channel){
         super(channel);
-        this.test = "efinegfni";
+        this.test = ACoreSpigotAPI.getInstance().getServerName();
         this.test2 = 188;
     }
 
