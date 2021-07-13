@@ -11,17 +11,13 @@ import fr.acore.spigot.api.packet.IPacketFactory;
 import fr.acore.spigot.api.plugin.IPlugin;
 import fr.acore.spigot.api.timer.ITimer;
 import fr.acore.spigot.config.utils.Conf;
-import fr.acore.spigot.jedis.channel.JedisChannelHandling;
 import fr.acore.spigot.jedis.packet.RedisPacket;
 import fr.acore.spigot.jedis.packet.factory.RedisPacketFactory;
-import fr.acore.spigot.jedis.packet.impl.InitServerPacket;
-import fr.acore.spigot.jedis.packet.impl.TestPacket;
+import fr.acore.spigot.jedis.packet.impl.server.InitServerPacket;
 import fr.acore.spigot.jedis.publisher.JedisPublisher;
 import fr.acore.spigot.utils.time.TimerBuilder;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPubSub;
-
-import java.util.Timer;
 
 public class RedisManager extends JedisPubSub implements IRedisPacketManager {
 

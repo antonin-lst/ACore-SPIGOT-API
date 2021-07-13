@@ -1,4 +1,4 @@
-package fr.acore.spigot.jedis.packet.impl;
+package fr.acore.spigot.jedis.packet.impl.server;
 
 
 import fr.acore.spigot.ACoreSpigotAPI;

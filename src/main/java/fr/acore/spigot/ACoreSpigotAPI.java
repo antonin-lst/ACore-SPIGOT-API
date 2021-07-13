@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.acore.spigot.jedis.manager.RedisManager;
-import fr.acore.spigot.jedis.packet.impl.InitServerPacket;
-import fr.acore.spigot.jedis.packet.impl.TestPacket;
+import fr.acore.spigot.jedis.packet.impl.server.InitServerPacket;
+import fr.acore.spigot.jedis.packet.impl.server.StopServerPacket;
+import fr.acore.spigot.jedis.packet.impl.server.UpdateServerPacket;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -140,6 +141,9 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 		//packets serveurs
 		redisManager.getPacketFactory().addPacket(2, InitServerPacket.class);
 		redisManager.syncCheckACoreMainPresence();
+		redisManager.getPacketFactory().addPacket(3, StopServerPacket.class);
+		redisManager.getPacketFactory().addPacket(4, UpdateServerPacket.class);
+
 
 		//registration du syteme de Task
 		registerManager(new RunnableManager(this));
