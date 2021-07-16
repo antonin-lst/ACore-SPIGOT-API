@@ -46,7 +46,7 @@ public class AManager extends Setupable implements IManager, IModule {
 	
 	/*
 	 * 
-	 * Method heritée de IManager
+	 * Method heritï¿½e de IManager
 	 * 
 	 */
 	
@@ -57,7 +57,7 @@ public class AManager extends Setupable implements IManager, IModule {
 	
 	/*
 	 * 
-	 * Extention du plugin enregistrée void AModule
+	 * Extention du plugin enregistrï¿½e void AModule
 	 * 
 	 */
 	
