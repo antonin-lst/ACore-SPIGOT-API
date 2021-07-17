@@ -237,7 +237,7 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 	
 	/*
 	 * 
-	 * Gestion des managers interne au ACoreSpigotAPI
+	 * Gestion des managers internes au ACoreSpigotAPI
 	 * 
 	 * 
 	 */

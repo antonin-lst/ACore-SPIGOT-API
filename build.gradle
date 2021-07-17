@@ -1,3 +1,5 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 plugins {
     id 'java'
 }
@@ -53,5 +55,8 @@ dependencies {
 processResources {
     from {
         configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    from(sourceSets.main.resources.srcDirs) {
+        filter ReplaceTokens, tokens: [version: version]
     }
 }
