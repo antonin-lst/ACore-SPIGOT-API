@@ -10,6 +10,7 @@ import fr.acore.spigot.jedis.manager.RedisManager;
 import fr.acore.spigot.jedis.packet.impl.server.InitServerPacket;
 import fr.acore.spigot.jedis.packet.impl.server.StopServerPacket;
 import fr.acore.spigot.jedis.packet.impl.server.UpdateServerPacket;
+import fr.acore.spigot.menu.manager.MenuManager;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -179,6 +180,8 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 		registerManager(new PlayerManager(this));
 		//registration du systeme de packet post player car utilise les joueurs
 		registerManager(new PacketsManager(this));
+		//registration du systeme de gestion des menus
+		registerManager(new MenuManager(this));
 		//registration du systeme de gestion des modules
 		registerManager(new AModuleManager(this));
 

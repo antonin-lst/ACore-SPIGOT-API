@@ -12,6 +12,6 @@ public interface IMenuManager extends IManager {
 	public void openMenu(CorePlayer<?> player, IMenu menu);
 	public boolean containPlayer(CorePlayer<?> player);
 	public void removePlayer(CorePlayer<?> player);
-	public IMenu getAMenu(CorePlayer<?> player);
+	public IMenu getPlayerMenu(CorePlayer<?> player);
 
 }
