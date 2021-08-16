@@ -3,6 +3,7 @@ package fr.acore.spigot.api.plugin;
 import java.io.File;
 import java.util.List;
 
+import fr.acore.spigot.api.command.ICommand;
 import fr.acore.spigot.api.hook.IHook;
 import fr.acore.spigot.api.hook.exception.HookFailException;
 import fr.acore.spigot.api.menu.IMenu;
@@ -114,5 +115,13 @@ public interface IPlugin<T extends IManager> extends IManagerCollection<T>, ILog
 	 */
 
 	public void openMenu(CorePlayer<?> corePlayer, IMenu menu);
+
+	/*
+
+	Gestion des Commandes
+
+	 */
+
+	public void registerCommand(ICommand command);
 
 }

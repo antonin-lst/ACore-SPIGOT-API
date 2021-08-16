@@ -6,9 +6,12 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.acore.spigot.api.command.ICommand;
 import fr.acore.spigot.api.hook.IHook;
 import fr.acore.spigot.api.hook.exception.HookFailException;
 import fr.acore.spigot.api.menu.IMenu;
+import fr.acore.spigot.commands.cmds.CommandReload;
+import fr.acore.spigot.commands.manager.CommandManager;
 import fr.acore.spigot.jedis.manager.RedisManager;
 import fr.acore.spigot.jedis.packet.impl.server.InitServerPacket;
 import fr.acore.spigot.jedis.packet.impl.server.StopServerPacket;
@@ -22,6 +25,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.google.common.io.Files;
@@ -188,6 +192,12 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 		//registration du systeme de gestion des modules
 		registerManager(new AModuleManager(this));
 
+		registerCommand(new CommandReload(this));
+		//registerForkCommand("reload", new RestartCommand());
+
+		long enablingTime = System.currentTimeMillis() - startMillis;
+
+		log("Enabled took : " + enablingTime + "ms");
 	}
 	
 	@Override
@@ -397,6 +407,23 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 	@Override
 	public void openMenu(CorePlayer<?> corePlayer, IMenu menu) {
 		getInternalManager(MenuManager.class).openMenu(corePlayer, menu);
+	}
+
+	/*
+
+	Gestion des commandes
+
+	 */
+
+	@Override
+	public void registerCommand(ICommand command) {
+		registerCommand(this, command);
+	}
+
+	public void registerCommand(IPlugin plugin, ICommand command) {
+		CommandManager commandManager = getManager(CommandManager.class);
+		commandManager.addCommand(command);
+		((JavaPlugin) plugin).getCommand(command.getName()).setExecutor(commandManager);
 	}
 
 	/*
