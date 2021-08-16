@@ -50,6 +50,9 @@ public abstract class ACommandSenderCommand implements ICommand<ICommandSender<C
 		return this.alliases;
 	}
 
+	public void setAlliases(List<String> alliases){
+		this.alliases = alliases;
+	}
 	/*
 	 * 
 	 * Liste des commandes en parametres
@@ -60,7 +63,10 @@ public abstract class ACommandSenderCommand implements ICommand<ICommandSender<C
 	public List<ICommand<?>> getArguments() {
 		return this.arguments;
 	}
-	
+
+	public void setArguments(List<ICommand<?>> arguments){
+		this.arguments = arguments;
+	}
 	/*
 	 * 
 	 * Auto completer des parametres en commandes grace aux arguments et a une fonction de filtre sur une list

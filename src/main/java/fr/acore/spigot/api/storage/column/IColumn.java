@@ -13,6 +13,7 @@ public interface IColumn {
 	public String getName();
 	public ColumnType getType();
 	public CustomSize getSize();
+	public void setSize(CustomSize customSize);
 
 	public boolean isPrimary();
 	public boolean isForeign();

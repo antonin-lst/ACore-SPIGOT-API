@@ -20,6 +20,7 @@ import fr.acore.spigot.api.storage.table.OneToManyCollection;
 import fr.acore.spigot.api.storage.table.Table;
 import fr.acore.spigot.api.storage.utils.CustomSize;
 import fr.acore.spigot.storage.DBHelper;
+import fr.acore.spigot.storage.column.MySqlColumn;
 import fr.acore.spigot.storage.database.MySqlDatabase;
 import fr.acore.spigot.storage.table.MySqlTable;
 
@@ -55,7 +56,7 @@ public class MySqlSchema implements ISchema<MySqlTable>{
 				while(result2.next()) {
 					String cName = result2.getString("Field");
 					String cType = result2.getString("Type");
-					sqlTable.addColumn(DBHelper.initColumn(sqlTable, cName, CustomSize.fromSqlType(cType), ColumnType.fromSqlType(cType)));
+					sqlTable.addColumn(new MySqlColumn(sqlTable, cName, ColumnType.fromSqlType(cType), CustomSize.fromSqlType(cType)));
 				}
 				statement2.close();
 				tables.add(sqlTable);
@@ -116,12 +117,12 @@ public class MySqlSchema implements ISchema<MySqlTable>{
 				if(f.getDeclaredAnnotation(Column.class) != null) {
 					Column column = f.getDeclaredAnnotation(Column.class);
 					ColumnType cType = ColumnType.valueOf(f.getType().getSimpleName().toUpperCase().equals("INT") ? "INTEGER" : f.getType().getSimpleName().toUpperCase());
-					IColumn c = DBHelper.initColumn(sqlTable, column.columnName().isEmpty() ? f.getName() : column.columnName(), cType.getDefaultSize(), cType);
+					IColumn c = new MySqlColumn(sqlTable, column.columnName().isEmpty() ? f.getName() : column.columnName(), cType, cType.getDefaultSize());
 					c.injectField(f);
 					sqlTable.addColumn(c);
 				}else if(f.getDeclaredAnnotation(ManyToOne.class) != null) {
 					ManyToOne fkColumn = f.getDeclaredAnnotation(ManyToOne.class);
-					IColumn c = DBHelper.initColumn(sqlTable, fkColumn.columnName().isEmpty() ? f.getName() : fkColumn.columnName(), fkColumn.type().getDefaultSize(), fkColumn.type());
+					IColumn c = new MySqlColumn(sqlTable, fkColumn.columnName().isEmpty() ? f.getName() : fkColumn.columnName(), fkColumn.type(), fkColumn.type().getDefaultSize());
 					c.injectField(f);
 					sqlTable.addColumn(c);
 				}else if(f.getDeclaredAnnotation(OneToMany.class) != null) {

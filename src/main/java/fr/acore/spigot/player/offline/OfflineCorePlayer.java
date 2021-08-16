@@ -43,4 +43,6 @@ public abstract class OfflineCorePlayer implements fr.acore.spigot.api.player.im
 	public boolean isOnline() {
 		return this instanceof CorePlayer;
 	}
+
+
 }

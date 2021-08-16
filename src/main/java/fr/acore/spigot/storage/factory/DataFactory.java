@@ -47,6 +47,7 @@ public abstract class DataFactory<T, U extends IManager> implements IDataFactory
 		this.manager = manager;
 		String tableName = DBHelper.getRealClassName(clazz);
 		ISchema<?> defaultSchema = manager.getPlugin().getManager(StorageManager.class).getDefaultDatabase().getDefaultSchema();
+
 		defaultSchema.createTable(clazz);
 		table = defaultSchema.getTable(tableName);
 	}

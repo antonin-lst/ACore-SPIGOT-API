@@ -116,7 +116,17 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 	public UUID getUuid() {
 		return offlineCorePlayer.getUuid();
 	}
-	
+
+	@Override
+	public String getEncryptedPassword() {
+		return offlineCorePlayer.getEncryptedPassword();
+	}
+
+	@Override
+	public void setEncryptedPassword(String password) {
+		offlineCorePlayer.setEncryptedPassword(password);
+	}
+
 	/*
 	 * 
 	 * Gestion de l'instance du joueur

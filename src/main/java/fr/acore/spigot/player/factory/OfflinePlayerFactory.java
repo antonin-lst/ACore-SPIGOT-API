@@ -1,5 +1,6 @@
 package fr.acore.spigot.player.factory;
 
+import fr.acore.spigot.api.storage.schema.ISchema;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 

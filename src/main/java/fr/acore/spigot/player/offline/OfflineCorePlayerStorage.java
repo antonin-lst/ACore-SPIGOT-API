@@ -71,5 +71,14 @@ public class OfflineCorePlayerStorage extends OfflineCorePlayer{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	@Override
+	public String getEncryptedPassword() {
+		return encryptedPassword;
+	}
+
+	@Override
+	public void setEncryptedPassword(String encryptedPassword) {
+		this.encryptedPassword = encryptedPassword;
+	}
 }

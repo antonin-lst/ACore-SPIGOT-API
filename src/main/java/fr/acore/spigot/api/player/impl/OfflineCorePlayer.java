@@ -7,12 +7,7 @@ import fr.acore.spigot.api.player.IPlayer;
 
 public interface OfflineCorePlayer extends IPlayer<OfflinePlayer> {
 
-	
-	/*
-	 * 
-	 * L'ensemble du OfflineCorePlayer est en read-only
-	 * 
-	 */
+
 	
 	/*
 	 * 
@@ -34,6 +29,15 @@ public interface OfflineCorePlayer extends IPlayer<OfflinePlayer> {
 	public void addKill();
 	public double getRatio();
 	public String getFormatedRatio();
+
+	/*
+
+	Gestion Authentification
+
+	 */
+
+	public String getEncryptedPassword();
+	public void setEncryptedPassword(String password);
 	
 	/*
 	 * 
