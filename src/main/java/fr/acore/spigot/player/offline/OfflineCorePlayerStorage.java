@@ -23,6 +23,9 @@ public class OfflineCorePlayerStorage extends OfflineCorePlayer{
 	
 	@Column
 	private String encryptedPassword;
+
+	@Column
+	private boolean premium;
 	
 	public OfflineCorePlayerStorage(OfflinePlayer offlinePlayer) {
 		setOfflinePlayer(offlinePlayer);
@@ -80,5 +83,10 @@ public class OfflineCorePlayerStorage extends OfflineCorePlayer{
 	@Override
 	public void setEncryptedPassword(String encryptedPassword) {
 		this.encryptedPassword = encryptedPassword;
+	}
+
+	@Override
+	public boolean isPremium() {
+		return premium;
 	}
 }

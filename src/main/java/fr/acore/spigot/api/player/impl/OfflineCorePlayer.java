@@ -38,6 +38,8 @@ public interface OfflineCorePlayer extends IPlayer<OfflinePlayer> {
 
 	public String getEncryptedPassword();
 	public void setEncryptedPassword(String password);
+
+	public boolean isPremium();
 	
 	/*
 	 * 

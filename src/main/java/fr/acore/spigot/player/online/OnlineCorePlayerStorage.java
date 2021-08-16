@@ -127,6 +127,11 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 		offlineCorePlayer.setEncryptedPassword(password);
 	}
 
+	@Override
+	public boolean isPremium() {
+		return offlineCorePlayer.isPremium();
+	}
+
 	/*
 	 * 
 	 * Gestion de l'instance du joueur
