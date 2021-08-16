@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.acore.spigot.api.hook.IHook;
 import fr.acore.spigot.api.hook.exception.HookFailException;
+import fr.acore.spigot.api.menu.IMenu;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -105,5 +106,13 @@ public interface IPlugin<T extends IManager> extends IManagerCollection<T>, ILog
 
 	public <T> void registerHook(IHook<T> hook) throws HookFailException;
 	public <T extends IHook<?>> T getHook(Class<T> clazz);
+
+	/*
+
+	Gestion des menus
+
+	 */
+
+	public void openMenu(CorePlayer<?> corePlayer, IMenu menu);
 
 }

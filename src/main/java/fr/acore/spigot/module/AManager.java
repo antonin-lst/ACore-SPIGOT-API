@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.acore.spigot.api.hook.IHook;
 import fr.acore.spigot.api.hook.exception.HookFailException;
+import fr.acore.spigot.api.menu.IMenu;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -221,6 +222,11 @@ public class AManager extends Setupable implements IManager, IModule {
 	@Override
 	public <T extends IHook<?>> T getHook(Class<T> clazz) {
 		return key.getHook(clazz);
+	}
+
+	@Override
+	public void openMenu(CorePlayer<?> corePlayer, IMenu menu) {
+		key.openMenu(corePlayer, menu);
 	}
 
 	/*

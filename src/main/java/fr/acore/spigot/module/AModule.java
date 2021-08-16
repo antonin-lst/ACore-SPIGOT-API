@@ -8,6 +8,7 @@ import java.util.List;
 
 import fr.acore.spigot.api.hook.IHook;
 import fr.acore.spigot.api.hook.exception.HookFailException;
+import fr.acore.spigot.api.menu.IMenu;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -264,6 +265,11 @@ public class AModule extends JavaPlugin implements IModule{
 	@Override
 	public <T extends IHook<?>> T getHook(Class<T> clazz) {
 		return instance.getHook(clazz);
+	}
+
+	@Override
+	public void openMenu(CorePlayer<?> corePlayer, IMenu menu) {
+		instance.openMenu(corePlayer, menu);
 	}
 
 	/*

@@ -8,6 +8,7 @@ import java.util.List;
 
 import fr.acore.spigot.api.hook.IHook;
 import fr.acore.spigot.api.hook.exception.HookFailException;
+import fr.acore.spigot.api.menu.IMenu;
 import fr.acore.spigot.jedis.manager.RedisManager;
 import fr.acore.spigot.jedis.packet.impl.server.InitServerPacket;
 import fr.acore.spigot.jedis.packet.impl.server.StopServerPacket;
@@ -385,6 +386,17 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 	@Override
 	public <T extends IHook<?>> T getHook(Class<T> clazz) {
 		return getInternalManager(HookManager.class).getHook(clazz);
+	}
+
+	/*
+
+	Gestion des menus
+
+	 */
+
+	@Override
+	public void openMenu(CorePlayer<?> corePlayer, IMenu menu) {
+		getInternalManager(MenuManager.class).openMenu(corePlayer, menu);
 	}
 
 	/*
