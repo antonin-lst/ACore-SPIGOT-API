@@ -3,6 +3,8 @@ package fr.acore.spigot.api.plugin;
 import java.io.File;
 import java.util.List;
 
+import fr.acore.spigot.api.hook.IHook;
+import fr.acore.spigot.api.hook.exception.HookFailException;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -94,5 +96,14 @@ public interface IPlugin<T extends IManager> extends IManagerCollection<T>, ILog
 	
 	public OfflineCorePlayer getOfflineCorePlayer(OfflinePlayer player);
 	public CorePlayer<?> getCorePlayer(Player player);
+
+	/*
+
+	Gestion des hooks
+
+	 */
+
+	public <T> void registerHook(IHook<T> hook) throws HookFailException;
+	public <T extends IHook<?>> T getHook(Class<T> clazz);
 
 }

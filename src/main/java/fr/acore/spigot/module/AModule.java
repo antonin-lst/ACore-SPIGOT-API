@@ -6,6 +6,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.acore.spigot.api.hook.IHook;
+import fr.acore.spigot.api.hook.exception.HookFailException;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -253,8 +255,17 @@ public class AModule extends JavaPlugin implements IModule{
 	public void registerDataFactory(IDataFactory<?, ?> factory) {
 		instance.registerDataFactory(factory);
 	}
-	
-	
+
+	@Override
+	public <T> void registerHook(IHook<T> hook) throws HookFailException {
+		instance.registerHook(hook);
+	}
+
+	@Override
+	public <T extends IHook<?>> T getHook(Class<T> clazz) {
+		return instance.getHook(clazz);
+	}
+
 	/*
 	 * 
 	 * Gestion des logs

@@ -3,6 +3,8 @@ package fr.acore.spigot.module;
 import java.io.File;
 import java.util.List;
 
+import fr.acore.spigot.api.hook.IHook;
+import fr.acore.spigot.api.hook.exception.HookFailException;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -210,7 +212,17 @@ public class AManager extends Setupable implements IManager, IModule {
 	public long getStartMillis() {
 		return key.getStartMillis();
 	}
-	
+
+	@Override
+	public <T> void registerHook(IHook<T> hook) throws HookFailException {
+		key.registerHook(hook);
+	}
+
+	@Override
+	public <T extends IHook<?>> T getHook(Class<T> clazz) {
+		return key.getHook(clazz);
+	}
+
 	/*
 	 * 
 	 * Gestion des logs

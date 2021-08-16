@@ -6,6 +6,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.acore.spigot.api.hook.IHook;
+import fr.acore.spigot.api.hook.exception.HookFailException;
 import fr.acore.spigot.jedis.manager.RedisManager;
 import fr.acore.spigot.jedis.packet.impl.server.InitServerPacket;
 import fr.acore.spigot.jedis.packet.impl.server.StopServerPacket;
@@ -368,7 +370,23 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 	public void registerDataFactory(IDataFactory<?, ?> factory) {
 		getInternalManager(StorageManager.class).addDataFactory(factory);
 	}
-	
+
+	/*
+
+	Gestion des hooks
+
+	 */
+
+	@Override
+	public <T> void registerHook(IHook<T> hook) throws HookFailException {
+		getInternalManager(HookManager.class).registerHook(hook);
+	}
+
+	@Override
+	public <T extends IHook<?>> T getHook(Class<T> clazz) {
+		return getInternalManager(HookManager.class).getHook(clazz);
+	}
+
 	/*
 	 * 
 	 * Gestion des logs
