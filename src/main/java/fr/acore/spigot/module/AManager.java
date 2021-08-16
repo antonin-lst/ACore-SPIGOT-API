@@ -3,6 +3,7 @@ package fr.acore.spigot.module;
 import java.io.File;
 import java.util.List;
 
+import fr.acore.spigot.api.command.ICommand;
 import fr.acore.spigot.api.hook.IHook;
 import fr.acore.spigot.api.hook.exception.HookFailException;
 import fr.acore.spigot.api.menu.IMenu;
@@ -227,6 +228,11 @@ public class AManager extends Setupable implements IManager, IModule {
 	@Override
 	public void openMenu(CorePlayer<?> corePlayer, IMenu menu) {
 		key.openMenu(corePlayer, menu);
+	}
+
+	@Override
+	public void registerCommand(ICommand command) {
+		key.registerCommand(command);
 	}
 
 	/*

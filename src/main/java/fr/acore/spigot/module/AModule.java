@@ -6,6 +6,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.acore.spigot.api.command.ICommand;
 import fr.acore.spigot.api.hook.IHook;
 import fr.acore.spigot.api.hook.exception.HookFailException;
 import fr.acore.spigot.api.menu.IMenu;
@@ -16,6 +17,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.google.common.io.Files;
@@ -270,6 +272,11 @@ public class AModule extends JavaPlugin implements IModule{
 	@Override
 	public void openMenu(CorePlayer<?> corePlayer, IMenu menu) {
 		instance.openMenu(corePlayer, menu);
+	}
+
+	@Override
+	public void registerCommand(ICommand command) {
+		instance.registerCommand(this, command);
 	}
 
 	/*
