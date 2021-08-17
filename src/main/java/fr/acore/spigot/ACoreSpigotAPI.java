@@ -191,7 +191,8 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 		registerManager(new MenuManager(this));
 		//registration du systeme de gestion des modules
 		registerManager(new AModuleManager(this));
-
+		//registration du systeme de commande
+		registerManager(new CommandManager(this));
 		registerCommand(new CommandReload(this));
 		//registerForkCommand("reload", new RestartCommand());
 

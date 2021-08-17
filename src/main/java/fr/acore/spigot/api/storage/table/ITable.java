@@ -91,7 +91,7 @@ public interface ITable {
 			primaryKeyBuilder.append(")");
 			builder.append(primaryKeyBuilder);
 		}
-		System.out.println("Debug Foreign : " + getForeignKey().size());
+		//System.out.println("Debug Foreign : " + getForeignKey().size());
 		if(!getForeignKey().isEmpty()) {
 			for(IColumn foreignColumn : getForeignKey()) {
 				String[] reference = foreignColumn.getForeign().split("\\.");

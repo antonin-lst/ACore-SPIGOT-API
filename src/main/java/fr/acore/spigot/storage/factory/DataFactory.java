@@ -81,8 +81,8 @@ public abstract class DataFactory<T, U extends IManager> implements IDataFactory
 	public boolean contain(String contraint, Object... datas) {
 		try {
 			List<T> test = select(new QueryConstraint(QueryConstraintType.WHERE, contraint, datas));
-			System.out.println(test.size());
-			System.out.println(test.get(0));
+			//System.out.println(test.size());
+			//System.out.println(test.get(0));
 			return !select(new QueryConstraint(QueryConstraintType.WHERE, contraint, datas)).isEmpty();
 		}catch(Exception e) {
 			return false;

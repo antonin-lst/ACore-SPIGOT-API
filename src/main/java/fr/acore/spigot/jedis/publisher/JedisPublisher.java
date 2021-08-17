@@ -55,7 +55,7 @@ public class JedisPublisher implements IJedisPublisher {
 
                     //System.out.println(queue.getChannel().getChannel());
                     try {
-                        System.out.println("sending : " + packet.toJson());
+                        //System.out.println("sending : " + packet.toJson());
                         jedis.publish(packet.getChannel(), packet.toJson());
                     }catch(Exception e) {
                         System.out.println(e.getMessage());

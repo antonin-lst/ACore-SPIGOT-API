@@ -156,18 +156,18 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 
 	@Override
 	public void sendMessage(String message) {
-		((Player) offlineCorePlayer.getPlayer()).sendMessage(message);
+		player.sendMessage(message);
 	}
 
 	@Override
 	public void sendMessage(String... message) {
-		((Player) offlineCorePlayer.getPlayer()).sendMessage(message);
+		player.sendMessage(message);
 	}
 
 	@Override
 	public void sendMessage(Object... message) {
 		for(Object m : message)
-			((Player) offlineCorePlayer.getPlayer()).sendMessage(m.toString());
+			player.sendMessage(m.toString());
 	}
 	
 	/*

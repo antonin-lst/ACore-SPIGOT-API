@@ -169,7 +169,7 @@ public class MySqlTable implements ITable {
 			PreparedStatement insert = getConnection().prepareStatement(request.toString());
 			List<AutoIncrement> autoIncrement = new ArrayList<>();
 			for(int j = 1; j < i; j++) {
-				System.out.println("DEBUG : " + j + " " + columns.get(j-1).getName());
+				//System.out.println("DEBUG : " + j + " " + columns.get(j-1).getName());
 				if(columns.get(j-1).isAutoIncrement()) {
 					PreparedStatement lastIndexStatement = getConnection().prepareStatement("SELECT " + columns.get(j-1).getName() + " FROM " + getSchema().getName() + "." + getName() + " ORDER BY " + columns.get(j-1).getName() + " DESC");
 					ResultSet result = lastIndexStatement.executeQuery();
@@ -301,7 +301,7 @@ public class MySqlTable implements ITable {
 			int i = 1;
 			for(Object o : queryConstraint.getDatas()) {
 				if(o instanceof Integer) {
-					System.out.println("Is int");
+					//System.out.println("Is int");
 					select.setInt(i, (Integer) o);
 				}
 				select.setObject(i, o);
@@ -315,7 +315,7 @@ public class MySqlTable implements ITable {
 				Object obj = clazz.newInstance();
 				if(columnConstraint.getDatas().isEmpty() || (columnConstraint.getDatas().size() == 1 && String.valueOf(columnConstraint.getDatas().get(0)).equals("*"))){
 					for(IColumn column : getColumns()) {
-						System.out.println(column.getName());
+						//System.out.println(column.getName());
 						Object  objResult = result.getObject(column.getName());
 						if(objResult != null) {
 							column.getInjectedField().setAccessible(true);

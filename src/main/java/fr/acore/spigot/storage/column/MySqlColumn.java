@@ -125,7 +125,11 @@ public class MySqlColumn implements IColumn {
                 IColumn targetColumn = targetTable.getColumn(datas[1]);
                 o = targetColumn.values(field.get(obj));
             }else {
-                o = field.get(obj);
+                if(getInjectedField().getType().equals(boolean.class)){
+                    o = Boolean.valueOf(String.valueOf(field.get(obj)));
+                }else{
+                    o = field.get(obj);
+                }
             }
         }catch(Exception e) {
             e.printStackTrace();

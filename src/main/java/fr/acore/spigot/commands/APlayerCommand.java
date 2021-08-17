@@ -17,7 +17,7 @@ public abstract class APlayerCommand extends ACommandSenderCommand {
 
 	@Override
 	public CommandStats performCommand(ICommandSender<CommandSender> sender, String... args) {
-		if(sender instanceof Player) {
+		if(sender.getSender() instanceof Player) {
 			return performAPlayerCommand(new CorePlayerSender(instance.getCorePlayer((Player) sender.getSender())), args);
 		}else {
 			return CommandStats.ONLY_PLAYER;

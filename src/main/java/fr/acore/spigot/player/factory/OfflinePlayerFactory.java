@@ -32,6 +32,13 @@ public class OfflinePlayerFactory extends DataFactory<OfflineCorePlayerStorage, 
 				manager.addPlayer(new OfflineCorePlayerStorage(offPlayer));
 			}
 		}
+		System.out.println("Information joueur chargée : ");
+		for(OfflineCorePlayer offlineCorePlayerStorage : manager.getOfflineCorePlayers()){
+			System.out.println("name : " + offlineCorePlayerStorage.getPlayer().getName());
+			System.out.println("uuid : " + offlineCorePlayerStorage.getUuid());
+			System.out.println("premium : " + String.valueOf(offlineCorePlayerStorage.isPremium()));
+			System.out.println("--------------------------------");
+		}
 	}
 
 	@Override
@@ -52,8 +59,8 @@ public class OfflinePlayerFactory extends DataFactory<OfflineCorePlayerStorage, 
 
 	@Override
 	public void save(OfflineCorePlayerStorage obj) {
-		System.out.println(obj.getUuid().toString());
-		System.out.println("ContainOFFPLAYER : " + String.valueOf(contain(obj.getUuid().toString())));
+		//System.out.println(obj.getUuid().toString());
+		//System.out.println("ContainOFFPLAYER : " + String.valueOf(contain(obj.getUuid().toString())));
 		if(contain(obj.getUuid().toString())) {
 			update(obj);
 		}else {

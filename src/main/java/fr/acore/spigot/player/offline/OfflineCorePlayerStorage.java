@@ -12,20 +12,23 @@ public class OfflineCorePlayerStorage extends OfflineCorePlayer{
 	@Column(primary = true, isUnique = true)
 	private String uuid;
 	
-	@Column
+	@Column()
 	private String name;
 	
-	@Column
+	@Column()
 	private int kills;
 	
-	@Column
+	@Column()
 	private int morts;
 	
-	@Column
+	@Column()
 	private String encryptedPassword;
 
-	@Column
+	@Column()
 	private boolean premium;
+
+	@Column()
+	private String premiumUuid;
 	
 	public OfflineCorePlayerStorage(OfflinePlayer offlinePlayer) {
 		setOfflinePlayer(offlinePlayer);

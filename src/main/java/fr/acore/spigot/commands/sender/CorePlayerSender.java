@@ -5,28 +5,25 @@ import fr.acore.spigot.api.player.impl.CorePlayer;
 
 public class CorePlayerSender implements ICommandSender<CorePlayer<?>> {
 
-	
+	private CorePlayer<?> sender;
 	
 	public CorePlayerSender(CorePlayer<?> sender) {
-		
+		this.sender = sender;
 	}
 
 	@Override
 	public CorePlayer<?> getSender() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.sender;
 	}
 
 	@Override
 	public boolean hasPermission(String perm) {
-		// TODO Auto-generated method stub
-		return false;
+		return sender.getPlayer().hasPermission(perm);
 	}
 
 	@Override
 	public boolean isInstanceOf(Class<?> clazz) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.getClass().equals(clazz);
 	}
 
 }
