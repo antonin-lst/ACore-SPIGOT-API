@@ -13,6 +13,8 @@ import fr.acore.spigot.api.menu.IMenu;
 import fr.acore.spigot.commands.cmds.CommandReload;
 import fr.acore.spigot.commands.manager.CommandManager;
 import fr.acore.spigot.jedis.manager.RedisManager;
+import fr.acore.spigot.jedis.packet.impl.queue.AddPlayerToServerQueuePacket;
+import fr.acore.spigot.jedis.packet.impl.queue.RemovePlayerToServerQueuePacket;
 import fr.acore.spigot.jedis.packet.impl.server.InitServerPacket;
 import fr.acore.spigot.jedis.packet.impl.server.StopServerPacket;
 import fr.acore.spigot.jedis.packet.impl.server.UpdateServerPacket;
@@ -151,6 +153,9 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 		redisManager.syncCheckACoreMainPresence();
 		redisManager.getPacketFactory().addPacket(3, StopServerPacket.class);
 		redisManager.getPacketFactory().addPacket(4, UpdateServerPacket.class);
+
+		redisManager.getPacketFactory().addPacket(8, AddPlayerToServerQueuePacket.class);
+		redisManager.getPacketFactory().addPacket(9, RemovePlayerToServerQueuePacket.class);
 
 
 		//registration du syteme de Task
