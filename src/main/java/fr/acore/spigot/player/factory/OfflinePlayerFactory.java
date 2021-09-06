@@ -27,17 +27,11 @@ public class OfflinePlayerFactory extends DataFactory<OfflineCorePlayerStorage, 
 	public void loadAll() {
 		for(OfflinePlayer offPlayer : Bukkit.getOfflinePlayers()) {
 			if(contain(offPlayer.getUniqueId().toString())) {
-				manager.addPlayer(selectFirst(new QueryConstraint(QueryConstraintType.WHERE, "uuid = ?", offPlayer.getUniqueId().toString())).setOfflinePlayer(offPlayer));
+				OfflineCorePlayer offcp = null;
+				manager.addPlayer(offcp = selectFirst(new QueryConstraint(QueryConstraintType.WHERE, "uuid = ?", offPlayer.getUniqueId().toString())).setOfflinePlayer(offPlayer));
 			}else {
 				manager.addPlayer(new OfflineCorePlayerStorage(offPlayer));
 			}
-		}
-		System.out.println("Information joueur chargée : ");
-		for(OfflineCorePlayer offlineCorePlayerStorage : manager.getOfflineCorePlayers()){
-			System.out.println("name : " + offlineCorePlayerStorage.getPlayer().getName());
-			System.out.println("uuid : " + offlineCorePlayerStorage.getUuid());
-			System.out.println("premium : " + String.valueOf(offlineCorePlayerStorage.isPremium()));
-			System.out.println("--------------------------------");
 		}
 	}
 

@@ -92,4 +92,8 @@ public class OfflineCorePlayerStorage extends OfflineCorePlayer{
 	public boolean isPremium() {
 		return premium;
 	}
+
+	public String getPremiumUuid() {
+		return premiumUuid;
+	}
 }

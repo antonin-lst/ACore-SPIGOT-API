@@ -23,6 +23,6 @@ public class RemovePlayerToServerQueuePacket extends RedisPacket {
 
     @Override
     public int getId() {
-        return 9;
+        return 10;
     }
 }

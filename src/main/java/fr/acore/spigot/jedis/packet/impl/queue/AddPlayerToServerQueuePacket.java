@@ -22,6 +22,6 @@ public class AddPlayerToServerQueuePacket extends RedisPacket {
 
     @Override
     public int getId() {
-        return 8;
+        return 9;
     }
 }

@@ -46,4 +46,6 @@ public interface OfflineCorePlayer extends IPlayer<OfflinePlayer> {
 	 * check si le joueur est en ligne
 	 */
 	public boolean isOnline();
+
+    String getPremiumUuid();
 }

@@ -108,6 +108,11 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 	}
 
 	@Override
+	public String getPremiumUuid() {
+		return offlineCorePlayer.getPremiumUuid();
+	}
+
+	@Override
 	public String getName() {
 		return offlineCorePlayer.getName();
 	}

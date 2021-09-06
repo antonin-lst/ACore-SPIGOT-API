@@ -154,8 +154,8 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 		redisManager.getPacketFactory().addPacket(3, StopServerPacket.class);
 		redisManager.getPacketFactory().addPacket(4, UpdateServerPacket.class);
 
-		redisManager.getPacketFactory().addPacket(8, AddPlayerToServerQueuePacket.class);
-		redisManager.getPacketFactory().addPacket(9, RemovePlayerToServerQueuePacket.class);
+		redisManager.getPacketFactory().addPacket(9, AddPlayerToServerQueuePacket.class);
+		redisManager.getPacketFactory().addPacket(10, RemovePlayerToServerQueuePacket.class);
 
 
 		//registration du syteme de Task
