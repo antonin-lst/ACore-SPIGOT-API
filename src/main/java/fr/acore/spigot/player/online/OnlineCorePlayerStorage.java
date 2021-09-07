@@ -263,10 +263,31 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 
 	 */
 
-	public void initBoard(String name){
-		this.board = new ABoard(player, name);
+	@Override
+	public void initBoard(String name) {
+
+	}
+
+	public void initBoard(String name, List<String> lines){
+
 		this.board.refreshBoard();
 	}
+
+	@Override
+	public void initBoard(String name, List<String> lines, boolean healthBare) {
+		this.board = new ABoard(player, name);
+		if(lines != null && !lines.isEmpty()){
+			int i = 1;
+			for(String line : lines){
+				this.board.addLine(i, line);
+				i++;
+			}
+		}
+
+		if(healthBare) this.board.addHealthBare();
+
+	}
+
 
 	public ABoard getBoard(){ return this.board;}
 

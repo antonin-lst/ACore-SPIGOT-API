@@ -82,6 +82,8 @@ public interface CorePlayer<T extends ICommandCooldown<?>> extends OfflineCorePl
 	 */
 
 	public void initBoard(String name);
+	public void initBoard(String name, List<String> lines);
+	public void initBoard(String name, List<String> lines, boolean healthBar);
 
 	public ABoard getBoard();
 

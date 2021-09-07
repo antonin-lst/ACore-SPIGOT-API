@@ -8,6 +8,7 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ABoard {
@@ -46,9 +47,15 @@ public class ABoard {
             Score score = mainBoard.getScore(line.getValue());
             score.setScore(line.getKey());
         }
+
+        if(player.getScoreboard() != scoreboard) setBoardToPlayer();
     }
 
     public void setBoardToPlayer(){
         player.setScoreboard(scoreboard);
+    }
+
+    public void addHealthBare() {
+
     }
 }
