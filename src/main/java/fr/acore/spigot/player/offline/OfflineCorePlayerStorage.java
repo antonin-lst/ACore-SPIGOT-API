@@ -5,6 +5,8 @@ import org.bukkit.OfflinePlayer;
 import fr.acore.spigot.api.storage.column.Column;
 import fr.acore.spigot.api.storage.table.Table;
 
+import java.text.DecimalFormat;
+
 @Table(name = "playerStorage")
 public class OfflineCorePlayerStorage extends OfflineCorePlayer{
 
@@ -68,14 +70,17 @@ public class OfflineCorePlayerStorage extends OfflineCorePlayer{
 
 	@Override
 	public double getRatio() {
-		// TODO Auto-generated method stub
-		return 0;
+		if(morts == 0.00 || kills == 0.00) {
+			return kills;
+		}
+		return kills/morts;
 	}
 
 	@Override
 	public String getFormatedRatio() {
-		// TODO Auto-generated method stub
-		return null;
+		double ratio = getRatio();
+		DecimalFormat f = new DecimalFormat("#.##");
+		return f.format(ratio);
 	}
 
 	@Override

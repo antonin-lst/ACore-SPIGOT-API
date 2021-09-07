@@ -3,6 +3,7 @@ package fr.acore.spigot.api.player.impl;
 import java.util.List;
 
 import fr.acore.spigot.api.nms.INMSPacket;
+import fr.acore.spigot.player.online.board.ABoard;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
 import org.bukkit.entity.Player;
@@ -73,7 +74,17 @@ public interface CorePlayer<T extends ICommandCooldown<?>> extends OfflineCorePl
 	public ChannelPipeline getPipeline();
 	public Channel getChannel();
 	
-	
+
+	/*
+
+	Gestion du board
+
+	 */
+
+	public void initBoard(String name);
+
+	public ABoard getBoard();
+
 	/*
 	 * HookPlayer
 	 * 

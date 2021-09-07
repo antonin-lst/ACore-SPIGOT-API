@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 
 import fr.acore.spigot.api.nms.INMSPacket;
+import fr.acore.spigot.player.online.board.ABoard;
 import org.bukkit.entity.Player;
 
 import fr.acore.spigot.api.faction.IFaction;
@@ -35,6 +36,9 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 	
 	private Player player;
 	private IFactionPlayer factionPlayer;
+
+	//instance du scoreboard
+	private ABoard board;
 	
 	private INetMinecraftServer nmsM;
 	
@@ -252,7 +256,22 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 	public Channel getChannel() {
 		return nmsM.getNettyChannel(this);
 	}
-	
+
+	/*
+
+	Gestion du scorboard d'un joueur
+
+	 */
+
+	public void initBoard(String name){
+		this.board = new ABoard(player, name);
+		this.board.refreshBoard();
+	}
+
+	public ABoard getBoard(){ return this.board;}
+
+
+
 	/*
 	 * 
 	 * Integration du FactionHook
