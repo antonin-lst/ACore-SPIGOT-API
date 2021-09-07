@@ -26,6 +26,9 @@ public interface CorePlayer<T extends ICommandCooldown<?>> extends OfflineCorePl
 	
 	public Player getPlayer();
 	public OfflineCorePlayer getOfflinePlayer();
+
+	public boolean isFirstJoin();
+	public void setFirstJoin(boolean firstJoin);
 	
 	/*
 	 * 

@@ -80,8 +80,16 @@ public class PlayerManager implements IPlayerManager{
 	
 	@Override
 	public void setPlayerOnline(OfflineCorePlayer offPlayer, Player player) {
-		if(offPlayer == null) offPlayer = new OfflineCorePlayerStorage(player);
-		CorePlayer<?> onlinePlayer = onlinePlayerFactory.load(offPlayer.getUuid().toString()).setOfflinePlayer((OfflineCorePlayerStorage) offPlayer).setPlayer(player);
+		CorePlayer<?> onlinePlayer;
+		boolean firstJoin;
+		if(offPlayer == null){
+			offPlayer = new OfflineCorePlayerStorage(player);
+			firstJoin = true;
+		}else{
+			firstJoin = false;
+		}
+		onlinePlayer = onlinePlayerFactory.load(offPlayer.getUuid().toString()).setOfflinePlayer((OfflineCorePlayerStorage) offPlayer).setPlayer(player);
+		onlinePlayer.setFirstJoin(firstJoin);
 		players.remove(offPlayer);
 		players.add(onlinePlayer);
 	}

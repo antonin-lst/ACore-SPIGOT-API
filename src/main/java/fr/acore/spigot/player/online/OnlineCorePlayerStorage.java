@@ -37,6 +37,8 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 	private Player player;
 	private IFactionPlayer factionPlayer;
 
+	private boolean firstJoin;
+
 	//instance du scoreboard
 	private ABoard board;
 	
@@ -188,6 +190,22 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 	@Override
 	public List<CommandStorage> getCommandsCooldowns() {
 		return this.commandCooldowns;
+	}
+
+	/*
+
+	Gestion premiere connection au serveur
+
+	 */
+
+	@Override
+	public boolean isFirstJoin() {
+		return firstJoin;
+	}
+
+	@Override
+	public void setFirstJoin(boolean firstJoin) {
+		this.firstJoin = firstJoin;
 	}
 
 	/*
