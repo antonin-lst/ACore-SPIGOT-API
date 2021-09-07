@@ -235,6 +235,11 @@ public class AManager extends Setupable implements IManager, IModule {
 		key.registerCommand(command);
 	}
 
+	@Override
+	public void registerForkCommand(ICommand<?> command) {
+		key.registerForkCommand(command);
+	}
+
 	/*
 	 * 
 	 * Gestion des logs

@@ -422,14 +422,19 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 	 */
 
 	@Override
-	public void registerCommand(ICommand command) {
+	public void registerCommand(ICommand<?> command) {
 		registerCommand(this, command);
 	}
 
-	public void registerCommand(IPlugin plugin, ICommand command) {
+	public void registerCommand(IPlugin<?> plugin, ICommand<?> command) {
 		CommandManager commandManager = getManager(CommandManager.class);
 		commandManager.addCommand(command);
 		((JavaPlugin) plugin).getCommand(command.getName()).setExecutor(commandManager);
+	}
+
+	@Override
+	public void registerForkCommand(ICommand<?> command) {
+		getManager(CommandManager.class).removeForkCommand(command);
 	}
 
 	/*

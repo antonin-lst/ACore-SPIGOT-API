@@ -3,6 +3,7 @@ package fr.acore.spigot.commands.manager;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.acore.spigot.commands.listener.CommandListener;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -42,6 +43,7 @@ public class CommandManager implements ICommandManager {
 		this.plugin = plugin;
 		commands = new ArrayList<>();
 		forkCommands = new ArrayList<>();
+		plugin.registerListener(new CommandListener(this));
 	}
 	
 	/*

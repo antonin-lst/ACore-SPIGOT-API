@@ -122,6 +122,7 @@ public interface IPlugin<T extends IManager> extends IManagerCollection<T>, ILog
 
 	 */
 
-	public void registerCommand(ICommand command);
+	public void registerCommand(ICommand<?> command);
+	public void registerForkCommand(ICommand<?> command);
 
 }

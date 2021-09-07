@@ -279,6 +279,11 @@ public class AModule extends JavaPlugin implements IModule{
 		instance.registerCommand(this, command);
 	}
 
+	@Override
+	public void registerForkCommand(ICommand<?> command) {
+		instance.registerForkCommand(command);
+	}
+
 	/*
 	 * 
 	 * Gestion des logs
@@ -317,7 +322,7 @@ public class AModule extends JavaPlugin implements IModule{
 	
 	@Override
 	public long getStartMillis() {
-		return 0;
+		return 0l;
 	}
 
 }
