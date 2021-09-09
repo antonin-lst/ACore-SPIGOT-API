@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.acore.spigot.api.command.sender.ICommandSender;
+import fr.acore.spigot.api.player.impl.CorePlayer;
 import fr.acore.spigot.commands.listener.CommandListener;
 import fr.acore.spigot.commands.sender.CorePlayerSender;
 import org.bukkit.ChatColor;
@@ -16,7 +17,7 @@ import fr.acore.spigot.api.command.ICommand;
 import fr.acore.spigot.api.command.ICommandManager;
 import fr.acore.spigot.api.command.ICommandPreform;
 import fr.acore.spigot.api.plugin.IPlugin;
-import fr.acore.spigot.commands.sender.PlayerAndConsolSender;
+import fr.acore.spigot.commands.sender.ConsoleSender;
 import fr.acore.spigot.commands.utils.CommandPreform;
 import fr.acore.spigot.config.utils.Conf;
 import org.bukkit.entity.Player;
@@ -128,7 +129,7 @@ public class CommandManager implements ICommandManager {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		String commandName = cmd.getName();
-		ICommandSender<?> commandSender = sender instanceof Player ? new CorePlayerSender(plugin.getCorePlayer((Player) sender)) : new PlayerAndConsolSender(sender);
+		ICommandSender<?> commandSender = sender instanceof Player ? new CorePlayerSender(plugin.getCorePlayer((Player) sender)) : sender instanceof CorePlayer<?> ? new CorePlayerSender((CorePlayer<?>) sender) : new ConsoleSender(sender);
 		for(ICommand<?> command : commands) {
 			if(command.getName().equals(commandName) || command.getAlliases().contains(commandName)) {
 				ICommandPreform performedCommand = getArgumentToCommand(command, args);

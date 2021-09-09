@@ -380,12 +380,11 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 
 	@Override
 	public void initBoard(String name) {
-
+		initBoard(name, new ArrayList<>());
 	}
 
 	public void initBoard(String name, List<String> lines){
-
-		this.board.refreshBoard();
+		initBoard(name, lines, false);
 	}
 
 	@Override

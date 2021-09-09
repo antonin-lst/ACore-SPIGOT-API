@@ -4,11 +4,11 @@ import org.bukkit.command.CommandSender;
 
 import fr.acore.spigot.api.command.sender.ICommandSender;
 
-public class PlayerAndConsolSender implements ICommandSender<CommandSender> {
+public class ConsoleSender implements ICommandSender<CommandSender> {
 
 	private CommandSender sender;
 	
-	public PlayerAndConsolSender(CommandSender sender) {
+	public ConsoleSender(CommandSender sender) {
 		this.sender = sender;
 	}
 	

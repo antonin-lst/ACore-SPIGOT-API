@@ -36,8 +36,8 @@ public class NMSMappingV1_8_R3 implements INetMinecraftServer{
 		return getEntityPlayer(player).ping;
 	}
 	
-	public EntityPlayer getEntityPlayer(CorePlayer<?> player) {
-		return ((CraftPlayer) player).getHandle();
+	public  static EntityPlayer getEntityPlayer(CorePlayer<?> player) {
+		return ((CraftPlayer) player.getPlayer()).getHandle();
 	}
 	
 	@Override
@@ -135,7 +135,7 @@ public class NMSMappingV1_8_R3 implements INetMinecraftServer{
 
 		@Override
 		public void sendPacket(CorePlayer<?> player) {
-			((CraftPlayer) player).getHandle().playerConnection.sendPacket(getEncapsuledPacket());
+			getEntityPlayer(player).playerConnection.sendPacket(getEncapsuledPacket());
 		}
 
 		@Override
