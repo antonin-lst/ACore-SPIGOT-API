@@ -17,13 +17,13 @@ public abstract class APlayerCommand extends ACommandSenderCommand {
 
 	@Override
 	public CommandStats performCommand(ICommandSender<CommandSender> sender, String... args) {
-		if(sender.getSender() instanceof Player) {
-			return performAPlayerCommand(new CorePlayerSender(instance.getCorePlayer((Player) sender.getSender())), args);
-		}else {
+		if(sender instanceof CorePlayerSender) {
+			return performAPlayerCommand(sender, args);
+		} else{
 			return CommandStats.ONLY_PLAYER;
 		}
 	}
 	
-	public abstract CommandStats performAPlayerCommand(ICommandSender<CorePlayer<?>> sender, String... args);
+	public abstract CommandStats performAPlayerCommand(ICommandSender<CommandSender> sender, String... args);
 	
 }

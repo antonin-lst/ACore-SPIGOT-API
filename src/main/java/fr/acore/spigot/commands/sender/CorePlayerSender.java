@@ -2,8 +2,9 @@ package fr.acore.spigot.commands.sender;
 
 import fr.acore.spigot.api.command.sender.ICommandSender;
 import fr.acore.spigot.api.player.impl.CorePlayer;
+import org.bukkit.command.CommandSender;
 
-public class CorePlayerSender implements ICommandSender<CorePlayer<?>> {
+public class CorePlayerSender implements ICommandSender<CommandSender> {
 
 	private CorePlayer<?> sender;
 	

@@ -27,6 +27,7 @@ public class CommandListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR)
     public void onCommandPreProcess(PlayerCommandPreprocessEvent event) {
+        System.out.println("Debug : " + event.getMessage() + " " + commandManager.getForkCommands().size());
         String cmdComplette = event.getMessage().replace("/", "");
         String cmdBase = cmdComplette.contains(" ") ? cmdComplette.split(" ")[0] : cmdComplette;
         List<String> args = new ArrayList<>();

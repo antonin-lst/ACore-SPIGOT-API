@@ -2,10 +2,13 @@ package fr.acore.spigot.player.online;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
+import fr.acore.spigot.ACoreSpigotAPI;
 import fr.acore.spigot.api.nms.INMSPacket;
 import fr.acore.spigot.player.online.board.ABoard;
+import org.bukkit.Server;
 import org.bukkit.entity.Player;
 
 import fr.acore.spigot.api.faction.IFaction;
@@ -22,6 +25,10 @@ import fr.acore.spigot.nms.manager.NMSManager;
 import fr.acore.spigot.player.offline.OfflineCorePlayerStorage;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
+import org.bukkit.permissions.Permission;
+import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.permissions.PermissionAttachmentInfo;
+import org.bukkit.plugin.Plugin;
 
 @Table(name = "onlinePlayerStorage")
 public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
@@ -143,6 +150,82 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 		return offlineCorePlayer.isPremium();
 	}
 
+
+	/*
+
+
+	Mapping CommandSender interface
+
+
+	 */
+
+	@Override
+	public boolean isPermissionSet(String name) {
+		return player.isPermissionSet(name);
+	}
+
+	@Override
+	public boolean isPermissionSet(Permission perm) {
+		return player.isPermissionSet(perm);
+	}
+
+	@Override
+	public boolean hasPermission(String name) {
+		return player.hasPermission(name);
+	}
+
+	@Override
+	public boolean hasPermission(Permission perm) {
+		return player.hasPermission(perm);
+	}
+
+	@Override
+	public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
+		return player.addAttachment(plugin, name, value);
+	}
+
+	@Override
+	public PermissionAttachment addAttachment(Plugin plugin) {
+		return player.addAttachment(plugin);
+	}
+
+	@Override
+	public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
+		return player.addAttachment(plugin, name, value, ticks);
+	}
+
+	@Override
+	public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
+		return player.addAttachment(plugin, ticks);
+	}
+
+	@Override
+	public void removeAttachment(PermissionAttachment attachment) {
+		player.removeAttachment(attachment);
+	}
+
+	@Override
+	public void recalculatePermissions() {
+		player.recalculatePermissions();
+	}
+
+	@Override
+	public Set<PermissionAttachmentInfo> getEffectivePermissions() {
+		return player.getEffectivePermissions();
+	}
+
+	@Override
+	public boolean isOp() {
+		return player.isOp();
+	}
+
+	@Override
+	public void setOp(boolean value) {
+		player.setOp(value);
+	}
+
+
+
 	/*
 	 * 
 	 * Gestion de l'instance du joueur
@@ -173,6 +256,11 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 	@Override
 	public void sendMessage(String... message) {
 		player.sendMessage(message);
+	}
+
+	@Override
+	public Server getServer() {
+		return player.getServer();
 	}
 
 	@Override
@@ -257,7 +345,16 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 		// TODO Auto-generated method stub
 		
 	}
-	
+
+	@Override
+	public void sendPacketPlayOutPlayerListHeaderFooter(String header, String footer) {
+		try {
+			nmsM.sendPacketPlayOutPlayerListHeaderFooter(this, header, footer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	public void clearTitle() {
 		sendTitle(" ");
@@ -402,4 +499,6 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 }

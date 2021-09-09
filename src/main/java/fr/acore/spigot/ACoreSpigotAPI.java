@@ -434,7 +434,7 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 
 	@Override
 	public void registerForkCommand(ICommand<?> command) {
-		getManager(CommandManager.class).removeForkCommand(command);
+		getManager(CommandManager.class).addForkCommand(command);
 	}
 
 	/*

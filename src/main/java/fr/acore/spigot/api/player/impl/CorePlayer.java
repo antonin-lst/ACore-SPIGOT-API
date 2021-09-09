@@ -6,6 +6,7 @@ import fr.acore.spigot.api.nms.INMSPacket;
 import fr.acore.spigot.player.online.board.ABoard;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.acore.spigot.ACoreSpigotAPI;
@@ -15,7 +16,7 @@ import fr.acore.spigot.api.manager.IManager;
 import fr.acore.spigot.api.packet.IPacket;
 import fr.acore.spigot.api.plugin.IPlugin;
 
-public interface CorePlayer<T extends ICommandCooldown<?>> extends OfflineCorePlayer, IFactionPlayer{
+public interface CorePlayer<T extends ICommandCooldown<?>> extends OfflineCorePlayer, IFactionPlayer, CommandSender {
 	
 	public static final IPlugin<IManager> plugin = ACoreSpigotAPI.getInstance();
 	
@@ -68,6 +69,8 @@ public interface CorePlayer<T extends ICommandCooldown<?>> extends OfflineCorePl
 	public void sendSubTitle(String message, int fadin, int delay, int fadout);
 	public void sendTimesForTitle(int fadin, int delay, int fadout);
 	public void clearTitle();
+
+	public void sendPacketPlayOutPlayerListHeaderFooter(String header, String footer);
 	
 	/*
 	 * 
