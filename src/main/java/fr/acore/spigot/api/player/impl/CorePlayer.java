@@ -105,7 +105,7 @@ public interface CorePlayer<T extends ICommandCooldown<?>> extends OfflineCorePl
 	public boolean removeMoneySafe(int somme);
 	public void addMoney(double somme);
 	public abstract void addMoney(int somme);
-	
+	public String getPermissionPrefix();
 	
 	public OfflineCorePlayer setIFactionPlayer(IFactionPlayer faction);
 	

@@ -1,13 +1,14 @@
 package fr.acore.spigot.player.online;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 import fr.acore.spigot.ACoreSpigotAPI;
 import fr.acore.spigot.api.nms.INMSPacket;
+import fr.acore.spigot.hook.hooks.*;
 import fr.acore.spigot.player.online.board.ABoard;
+import net.luckperms.api.LuckPermsProvider;
+import net.luckperms.api.model.user.User;
+import net.luckperms.api.query.QueryOptions;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
 
@@ -50,10 +51,16 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 	private ABoard board;
 	
 	private INetMinecraftServer nmsM;
+
+	//hooks
+	private VaultEcoHook vaultEcoHook;
+	private LuckPermHook luckPermHook;
 	
 	public OnlineCorePlayerStorage() {
 		this.commandCooldowns = new ArrayList<>();
 		nmsM = plugin.getInternalManager(NMSManager.class).getNMS();
+		vaultEcoHook = plugin.getHook(VaultEcoHook.class);
+		luckPermHook = plugin.getHook(LuckPermHook.class);
 	}
 	
 	/*
@@ -446,47 +453,97 @@ public class OnlineCorePlayerStorage implements CorePlayer<CommandStorage>{
 	 */
 
 	@Override
-	public double getBalance() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void removeMoney(double somme) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeMoney(int somme) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean removeMoneySafe(double somme) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean removeMoneySafe(int somme) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public void addMoney(double somme) {
-		// TODO Auto-generated method stub
-		
+		if(!vaultEcoHook.isHooked()) {
+			plugin.log("Vault n'est pas disponible");
+			return;
+		}
+		vaultEcoHook.getHook().depositPlayer(player, somme);
 	}
 
 	@Override
 	public void addMoney(int somme) {
-		// TODO Auto-generated method stub
-		
+		if(!vaultEcoHook.isHooked()) {
+			plugin.log("Vault n'est pas disponible");
+			return;
+		}
+		vaultEcoHook.getHook().depositPlayer(player, somme);
 	}
-	
+
+	@Override
+	public double getBalance() {
+		if(!vaultEcoHook.isHooked()) {
+			plugin.log("Vault n'est pas disponible");
+			return 0;
+		}
+		return vaultEcoHook.getHook().getBalance(player);
+	}
+
+	@Override
+	public void removeMoney(double somme) {
+		if(!vaultEcoHook.isHooked()) {
+			plugin.log("Vault n'est pas disponible");
+			return;
+		}
+
+		vaultEcoHook.getHook().withdrawPlayer(player, somme);
+	}
+
+	@Override
+	public void removeMoney(int somme) {
+		if(!vaultEcoHook.isHooked()) {
+			plugin.log("Vault n'est pas disponible");
+			return;
+		}
+		vaultEcoHook.getHook().withdrawPlayer(player, somme);
+	}
+
+	@Override
+	public boolean removeMoneySafe(double somme) {
+		if(!vaultEcoHook.isHooked()) {
+			plugin.log("Vault n'est pas disponible");
+			return false;
+		}
+
+		if(getBalance() < somme) return false;
+
+		removeMoney(somme);
+		return true;
+	}
+
+	@Override
+	public boolean removeMoneySafe(int somme) {
+		if(!vaultEcoHook.isHooked()) {
+			plugin.log("Vault n'est pas disponible");
+			return false;
+		}
+
+		if(getBalance() < somme) return false;
+
+		removeMoney(somme);
+		return true;
+	}
+
+	/*
+
+	Integration de LuckPerm
+
+	 */
+
+	@Override
+	public String getPermissionPrefix() {
+		if(!luckPermHook.isHooked()) {
+			plugin.log("LuckPerms n'est pas disponible");
+			return null;
+		}
+		User user = luckPermHook.getHook().getUserManager().getUser(player.getUniqueId());
+		Optional<QueryOptions> options = LuckPermsProvider.get().getContextManager().getQueryOptions(user);
+		if (!options.isPresent())
+			return "";
+		String prefix = user.getCachedData().getMetaData(options.get()).getPrefix();
+		return (prefix == null) ? "" : prefix;
+	}
+
 	/*
 	 * 
 	 * Integration de WorldGuard Hook

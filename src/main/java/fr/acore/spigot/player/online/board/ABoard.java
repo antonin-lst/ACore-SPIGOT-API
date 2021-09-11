@@ -1,11 +1,9 @@
 package fr.acore.spigot.player.online.board;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Score;
-import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +54,18 @@ public class ABoard {
     }
 
     public void addHealthBare() {
-
+        Objective o = this.scoreboard.registerNewObjective("health", "health");
+        o.setDisplayName(ChatColor.RED + "❤");
+        o.setDisplaySlot(DisplaySlot.BELOW_NAME);
     }
+
+    public void setPlayerPrefixAndSuffix(String playerPrefix, String playerSuffix, Player player, String teamName) {
+        if(scoreboard.getTeam(teamName) == null)
+            scoreboard.registerNewTeam(teamName);
+        Team t = scoreboard.getTeam(teamName);
+        t.setPrefix(playerPrefix);
+        t.setSuffix(playerSuffix);
+        t.addPlayer(player);
+    }
+
 }
