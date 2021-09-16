@@ -36,4 +36,6 @@ public interface INetMinecraftServer {
 	
 	public <T extends Event> T convertPacketInboundToEvent(Object packet, CorePlayer<?> p);
 	public <T extends Event> T convertPacketOutboundToEvent(Object packet, CorePlayer<?> p);
+
+	public double getTPS();
 }

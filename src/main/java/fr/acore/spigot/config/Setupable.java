@@ -32,7 +32,7 @@ public abstract class Setupable implements ISetupable<IPlugin<?>> {
 		if(useConfig) {
 			try {
 				setup(key.getConfig());
-				key.log("La configuration de la classe " + ChatColor.YELLOW + getClass().getSimpleName() + ChatColor.GREEN + " est chargée avec succes");
+				key.log("La configuration de la classe " + ChatColor.YELLOW + getClass().getSimpleName() + ChatColor.GREEN + " est chargÃ©e avec succes");
 			}catch(Exception ex) {
 				key.logErr(ChatColor.GREEN + "Erreur de chargement de la configuration de la classe " + ChatColor.YELLOW + getClass().getSimpleName());
 				if(ex.getMessage() != null && !ex.getMessage().isEmpty()) {

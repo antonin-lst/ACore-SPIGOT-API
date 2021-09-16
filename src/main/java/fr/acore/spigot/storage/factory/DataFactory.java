@@ -38,7 +38,7 @@ public abstract class DataFactory<T, U extends IManager> implements IDataFactory
 	
 	/*
 	 * 
-	 * Constructeur utilisent le schema par default de la base de donnée par default
+	 * Constructeur utilisent le schema par default de la base de donnÃ©e par default
 	 * 
 	 */
 	
@@ -123,7 +123,7 @@ public abstract class DataFactory<T, U extends IManager> implements IDataFactory
 
 	/*
 	 * 
-	 * Getter du manager et de la table heritée de IDataFactory
+	 * Getter du manager et de la table heritÃ©e de IDataFactory
 	 * 
 	 */
 	

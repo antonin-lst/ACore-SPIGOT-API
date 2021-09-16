@@ -84,7 +84,12 @@ public class AManager extends Setupable implements IManager, IModule {
 	public Version getApiVersion() throws ParseVersionException {
 		return module.getApiVersion();
 	}
-	
+
+	@Override
+	public double getTPS() {
+		return module.getTPS();
+	}
+
 	@Override
 	public File getConfigFile() {
 		return key.getConfigFile();

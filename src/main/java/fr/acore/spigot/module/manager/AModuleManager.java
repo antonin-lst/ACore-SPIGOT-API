@@ -62,7 +62,7 @@ public class AModuleManager implements IModuleManager{
 	
 	/*
 	 * 
-	 * Permet de récuperer un manager par ca class dans la list des modules existant
+	 * Permet de rÃ©cuperer un manager par ca class dans la list des modules existant
 	 * voir HookSysteme
 	 * 
 	 */

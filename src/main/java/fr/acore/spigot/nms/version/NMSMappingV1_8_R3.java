@@ -3,6 +3,7 @@ package fr.acore.spigot.nms.version;
 import java.lang.reflect.Field;
 
 import fr.acore.spigot.api.nms.INMSPacket;
+import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.event.Event;
 import org.bukkit.scoreboard.Objective;
@@ -14,22 +15,16 @@ import fr.acore.spigot.nms.utils.ObjectiveMode;
 import fr.acore.spigot.utils.ReflexionUtils;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelPipeline;
-import net.minecraft.server.v1_8_R3.EntityPlayer;
-import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent.ChatSerializer;
-import net.minecraft.server.v1_8_R3.Packet;
-import net.minecraft.server.v1_8_R3.PacketPlayInTabComplete;
-import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityVelocity;
-import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;
-import net.minecraft.server.v1_8_R3.PacketPlayOutScoreboardDisplayObjective;
-import net.minecraft.server.v1_8_R3.PacketPlayOutScoreboardObjective;
-import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle.EnumTitleAction;
-import net.minecraft.server.v1_8_R3.ScoreboardObjective;
 
 public class NMSMappingV1_8_R3 implements INetMinecraftServer{
-	
+
+
+	@Override
+	public double getTPS() {
+		return MinecraftServer.getServer().recentTps[0];
+	}
 
 	@Override
 	public int getPing(CorePlayer<?> player) {
@@ -41,8 +36,8 @@ public class NMSMappingV1_8_R3 implements INetMinecraftServer{
 	}
 	
 	@Override
-	public void sendTimePacket(CorePlayer<?> player, int fadin, int delay, int fadout) {
-		V1_8_R3Packet<PacketPlayOutTitle> packetPlayOutTitle = new V1_8_R3Packet<PacketPlayOutTitle>(new PacketPlayOutTitle(fadin, delay, fadout));
+	public void sendTimePacket(CorePlayer<?> player, int fadeIn, int delay, int fadeOut) {
+		V1_8_R3Packet<PacketPlayOutTitle> packetPlayOutTitle = new V1_8_R3Packet<PacketPlayOutTitle>(new PacketPlayOutTitle(fadeIn, delay, fadeOut));
 		sendPacket(player, packetPlayOutTitle);
 	}
 	

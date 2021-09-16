@@ -12,6 +12,7 @@ import fr.acore.spigot.api.hook.exception.HookFailException;
 import fr.acore.spigot.api.menu.IMenu;
 import fr.acore.spigot.commands.cmds.CommandReload;
 import fr.acore.spigot.commands.manager.CommandManager;
+import fr.acore.spigot.hook.hooks.EssentialsHook;
 import fr.acore.spigot.jedis.manager.RedisManager;
 import fr.acore.spigot.jedis.packet.impl.queue.AddPlayerToServerQueuePacket;
 import fr.acore.spigot.jedis.packet.impl.queue.RemovePlayerToServerQueuePacket;
@@ -474,5 +475,29 @@ public class ACoreSpigotAPI extends JavaPlugin implements IPlugin<IManager>{
 	public void logErr(Object... args) {
 		getInternalManager(LoggerManager.class).logErr(args);
 	}
-	
+
+
+	/*
+
+	Gestion des TPS
+
+	 */
+
+	@Override
+	public double getTPS() {
+		int tpsCount = 1;
+		double tps = getInternalManager(NMSManager.class).getNMS().getTPS();
+
+		EssentialsHook essHook = getHook(EssentialsHook.class);
+		if(essHook.isHooked()) {
+			tps += essHook.getHook().getTimer().getAverageTPS();
+			tpsCount++;
+		}
+		//future ajout de la gestion des tps des runnable du acore
+		//tps += ((CoreRunnable) getManager(CoreRunnable.class)).getTps();
+		//tpsCount++;
+		return tps/tpsCount;
+	}
+
+
 }

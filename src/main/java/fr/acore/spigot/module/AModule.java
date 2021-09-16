@@ -58,7 +58,7 @@ public class AModule extends JavaPlugin implements IModule{
 	private boolean licenceValid;
 	
 	/*
-	 * Plugin information (ServerName, PluginName, PluginVersion)
+	 * Plugin information (ServerName, ServerTPS, PluginName, PluginVersion)
 	 * 
 	 */
 	
@@ -66,6 +66,7 @@ public class AModule extends JavaPlugin implements IModule{
 	public String getPluginName() { return getClass().getSimpleName();}
 	public Version getPluginVersion() throws ParseVersionException { return Version.fromString(getDescription().getVersion());}
 	public Version getApiVersion() throws ParseVersionException { return instance.getPluginVersion();}
+	public double getTPS(){ return instance.getTPS();}
 
 	/*
 	 * fileConfiguration (yaml format)
@@ -135,7 +136,7 @@ public class AModule extends JavaPlugin implements IModule{
 	    config = new YamlConfiguration();
 	    try {
 	        config.loadFromString(Files.toString (configFile, Charset.forName("UTF-8")));
-	        log(ChatColor.YELLOW + getName() + ChatColor.GRAY + " config.yml chargée avec succes");
+	        log(ChatColor.YELLOW + getName() + ChatColor.GRAY + " config.yml chargÃ©e avec succes");
 	    } catch (IOException | InvalidConfigurationException e) {
 	       log(ChatColor.YELLOW + getName() + ChatColor.RED + " Une erreur est survenue pendant le chargement du fichier config.yml");
 	    }

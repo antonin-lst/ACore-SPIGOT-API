@@ -2,9 +2,9 @@ package fr.acore.spigot.api.logger;
 
 public enum Levels {
 
-	INFO("§7[INFO] §f"),
-	WARN("§c[WARN] §f"),
-	ERR("§4[ERREUR] §f");
+	INFO("&7[INFO] &f"),
+	WARN("&c[WARN] &f"),
+	ERR("&4[ERREUR] &f");
 	
 	private String desc;
 	

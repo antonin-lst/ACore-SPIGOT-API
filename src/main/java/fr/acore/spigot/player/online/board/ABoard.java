@@ -17,8 +17,10 @@ public class ABoard {
     //instance du scoreboard
     private Scoreboard scoreboard;
 
+    //gestion du beffering de la SIDEBAR
     private Objective mainBoard;
     private Objective bufferedMainBoard;
+
     private String currentMainBoardName;
     private Map<Integer, String> mainBoardLines;
 
@@ -26,32 +28,40 @@ public class ABoard {
         this.player = player;
         this.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
         this.mainBoard = scoreboard.registerNewObjective("main-board", "dummy");
+        this.mainBoard = scoreboard.registerNewObjective("main-board-bf", "dummy");
         this.currentMainBoardName = currentBoardName;
         this.mainBoardLines = new HashMap<>();
     }
 
+    /*
+
+    Gestion du ScoreBoard SIDEBAR
+
+     */
+
+    //set des lignes
+    public void setLines(Map<Integer, String> lines){ this.mainBoardLines = lines;}
+
+    //ajout d'une ligne
     public void addLine(int index, String line){
         this.mainBoardLines.put(index, line);
     }
 
+    //supprétion d'une ligne
+    public void removeLine(int index){
+        this.mainBoardLines.remove(index);
+    }
+
+    //suppretion de toutes les lignes
     public void clearLines(){
         this.mainBoardLines.clear();
     }
 
-    public void refreshBoard(){
-        this.mainBoard.setDisplayName(currentMainBoardName);
-        this.mainBoard.setDisplaySlot(DisplaySlot.SIDEBAR);
-        for(Map.Entry<Integer, String> line : mainBoardLines.entrySet()){
-            Score score = mainBoard.getScore(line.getValue());
-            score.setScore(line.getKey());
-        }
+    /*
 
-        if(player.getScoreboard() != scoreboard) setBoardToPlayer();
-    }
+    Gestion du nametag
 
-    public void setBoardToPlayer(){
-        player.setScoreboard(scoreboard);
-    }
+     */
 
     public void addHealthBare() {
         Objective o = this.scoreboard.registerNewObjective("health", "health");
@@ -67,5 +77,52 @@ public class ABoard {
         t.setSuffix(playerSuffix);
         t.addPlayer(player);
     }
+
+    /*
+
+    Scoreboard gestion
+
+     */
+
+
+    //actualisation du scoreboard
+    public void refreshBoard(){
+        switchBuffer();
+        this.mainBoard.setDisplayName(currentMainBoardName);
+        for(Map.Entry<Integer, String> line : mainBoardLines.entrySet()){
+            Score score = mainBoard.getScore(line.getValue());
+            score.setScore(line.getKey());
+        }
+        this.mainBoard.setDisplaySlot(DisplaySlot.SIDEBAR);
+        this.bufferedMainBoard.unregister();
+        this.bufferedMainBoard = scoreboard.registerNewObjective("main-board-bf", "dummy");
+
+        if(player.getScoreboard() != scoreboard) setBoardToPlayer();
+    }
+
+    //echange entre main-board et buffered-board
+    public void switchBuffer(){
+        this.bufferedMainBoard.setDisplayName(mainBoard.getDisplayName());
+        for(Map.Entry<Integer, String> line : mainBoardLines.entrySet()){
+            Score score = mainBoard.getScore(line.getValue());
+            score.setScore(line.getKey());
+        }
+        this.bufferedMainBoard.setDisplaySlot(DisplaySlot.SIDEBAR);
+        this.mainBoard.unregister();
+        this.mainBoard = scoreboard.registerNewObjective("main-board", "dummy");
+    }
+
+    /*
+
+    Gestion du joueur
+
+     */
+
+    public void setBoardToPlayer(){
+        player.setScoreboard(scoreboard);
+    }
+
+    public Player getPlayer(){ return this.player;}
+
 
 }

@@ -50,9 +50,9 @@ public class PlayerManager implements IPlayerManager{
 	public PlayerManager(ACoreSpigotAPI plugin) {
 		this.plugin = plugin;
 		this.players = new ArrayList<>();
-		plugin.registerListener(new PlayerListener(this));
 		getPlugin().registerDataFactory(this.offlinePlayerFactory = new OfflinePlayerFactory(this));
 		getPlugin().registerDataFactory(this.onlinePlayerFactory = new OnlinePlayerFactory(this));
+		plugin.registerListener(new PlayerListener(this));
 	}
 	
 	
@@ -88,7 +88,16 @@ public class PlayerManager implements IPlayerManager{
 		}else{
 			firstJoin = false;
 		}
-		onlinePlayer = onlinePlayerFactory.load(offPlayer.getUuid().toString()).setOfflinePlayer((OfflineCorePlayerStorage) offPlayer).setPlayer(player);
+		if(onlinePlayerFactory == null){
+			System.out.println("wtffffffffffffffffffff");
+			return;
+		}
+		onlinePlayer = onlinePlayerFactory.load(offPlayer.getUuid().toString());
+		if(onlinePlayer == null){
+			System.out.println("Debug onlinePlayer == null ifneigeibg");
+			return;
+		}
+		((OnlineCorePlayerStorage) onlinePlayer).setOfflinePlayer((OfflineCorePlayerStorage) offPlayer).setPlayer(player);
 		onlinePlayer.setFirstJoin(firstJoin);
 		players.remove(offPlayer);
 		players.add(onlinePlayer);
